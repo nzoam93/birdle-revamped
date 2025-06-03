@@ -1,13 +1,16 @@
-import {currentGuess, secretWord, wordLength, numberOfGuesses, dictionary, setCurrentGuess, setGameOver, setNumberOfGuesses } from "./gameState.js"
-import { shakeRow } from "./utils.js"
+import {currentGuess, secretWord, wordLength, numberOfGuesses, dictionary, setCurrentGuess, setGameOver, setNumberOfGuesses, guessResults } from "./gameState.js"
+import { shakeRow, showAlert } from "./utils.js"
 
 export function checkGuess(){
+    let emojiRow = []
     let guess = currentGuess.join("")
     const letterCount = {}
 
      // Check if guess is in dictionary of words
     if (!dictionary.includes(guess)) {
         shakeRow(`row-${numberOfGuesses}`)
+        showAlert("Guess not in word list")
+
         return; // Exit early, don't process the guess
     }
 
@@ -30,6 +33,9 @@ export function checkGuess(){
                 keyButton.classList.remove("half-right", "wrong");
                 keyButton.classList.add("correct");
             }
+
+            //update the emojiRow
+            emojiRow.push("🟩")
         }
     }
 
@@ -48,6 +54,9 @@ export function checkGuess(){
                     keyButton.classList.remove("wrong");
                     keyButton.classList.add("half-right");
                 }
+
+                //update the emojiRow
+                emojiRow.push("🟨")
             }
             else {
                 square.classList.add("wrong");
@@ -56,20 +65,26 @@ export function checkGuess(){
                 if (keyButton && !keyButton.classList.contains("correct") && !keyButton.classList.contains("half-right")) {
                     keyButton.classList.add("wrong");
                 }
+
+                //update the emojiRow
+                emojiRow.push("⬜")
             }
         }
     }
+    guessResults.push(emojiRow)
 
     //check to see if the word was right
+    setNumberOfGuesses(numberOfGuesses + 1);
     if (guess === secretWord) {
         document.getElementById("gameInfo").textContent = "Congrats, you got it right!"
         setGameOver(true);
+        document.getElementById("shareBtn").style.display = "block";
     }
     else {
-        setNumberOfGuesses(numberOfGuesses + 1);
         if (numberOfGuesses === 6) {
             document.getElementById("gameInfo").textContent = `The secret word was ${secretWord}`
             setGameOver(true);
+            document.getElementById("shareBtn").style.display = "block";
         }
     }
 

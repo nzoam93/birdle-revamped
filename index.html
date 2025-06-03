@@ -9,11 +9,17 @@
 </head>
 <body>
     <h1 id="header">Birdle: Part 2</h1>
-    <div id="alert" style="position: fixed; top: 20px; left: 25%; font-size: 50px; background-color: aliceblue; z-index: 9999;"></div>
+    <div id="custom-alert" class="hidden"></div>
     <div id="game">
         <div id="board"></div>
         <div id="keyboard"></div>
         <div id="gameInfo"></div>
+    </div>
+    <div id="share-btn-container">
+        <button id="shareBtn" style="display:none;">
+            Share
+            <img src="/imgs/share-icon.png" alt="Share" style="margin-left: 6px;">
+        </button>
     </div>
 </body>
 </html>

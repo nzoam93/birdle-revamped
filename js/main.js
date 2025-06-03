@@ -2,7 +2,9 @@
 import { createBoard } from "./board.js";
 import { createKeyboard } from "./keyboard.js";
 import { handleKey } from "./handleKey.js";
-import {numRows, wordLength, dictionary, setSecretWord, setDictionary } from "./gameState.js"
+import {numRows, wordLength, dictionary, setSecretWord, setDictionary, numberOfGuesses } from "./gameState.js";
+import { generateShareText } from "./generateShareText.js";
+import { showAlert } from "./utils.js";
 
 fetch('/word-bank.txt')
   .then(res => res.text())
@@ -12,7 +14,8 @@ fetch('/word-bank.txt')
     setDictionary(dict)
 
     //set our word to a randomly selected word from the dictionary
-    const randomWord = dictionary[Math.floor(Math.random() * dictionary.length)];
+    // const randomWord = dictionary[Math.floor(Math.random() * dictionary.length)];
+    let randomWord = "GOOSE"
     setSecretWord(randomWord)
 
     //create the board and keyboard
@@ -27,3 +30,10 @@ fetch('/word-bank.txt')
 
 // handle key presses
 document.addEventListener("keydown", handleKey);
+
+document.getElementById("shareBtn").addEventListener("click", () => {
+    const text = generateShareText(numberOfGuesses);
+    navigator.clipboard.writeText(text).then(() => {
+        showAlert("Result copied to clipboard", 4000, 860)
+    });
+});

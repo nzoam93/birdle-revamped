@@ -7,3 +7,18 @@ export function shakeRow(rowId) {
     row.classList.remove('shake');
   }, { once: true });
 }
+
+export function showAlert(message, duration = 2000, position=20) {
+    const alertBox = document.getElementById("custom-alert");
+    alertBox.textContent = message;
+    alertBox.style.top = `${position}px`;  // dynamically set position
+
+    alertBox.classList.add("show");
+
+    setTimeout(() => {
+        alertBox.classList.remove("show");
+    }, duration);
+
+
+
+}

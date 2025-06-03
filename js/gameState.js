@@ -5,10 +5,10 @@ export let numRows = 6;
 export let wordLength = 5;
 export let numberOfGuesses = 0;
 export let dictionary = [];
+export let guessResults = [] //array of emojis to share
 
 export function setCurrentGuess(guess) {
   currentGuess = guess;
-  console.log(currentGuess)
 }
 export function setGameOver(value) {
   gameOver = value;
