@@ -6,7 +6,7 @@ import {numRows, wordLength, dictionary, setSecretWord, setDictionary, numberOfG
 import { generateShareText } from "./generateShareText.js";
 import { showAlert } from "./utils.js";
 
-fetch('/word-bank.txt')
+fetch('./word-bank.txt')
   .then(res => res.text())
   .then(text => {
     // set the dictionary of words to the allowed list of words
