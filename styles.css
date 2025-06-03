@@ -64,20 +64,21 @@ body {
 
 .keyboard-row {
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 
 .key {
-  padding: 10px 14px;
-  font-size: 20px;
+  padding: 10px;
+  font-size: 15px;
   color: white;
   height: 60px;
-  min-width: 50px;
+  min-width:  33px;
   border-radius: 5px;
   background-color: #818384;
   cursor: pointer;
   user-select: none;
   border: none;
+  text-align: center;
 }
 
 .key:hover {
