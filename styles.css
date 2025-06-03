@@ -1,0 +1,100 @@
+/* centering */
+#header, #gameInfo{
+    display: flex;
+    justify-content: center;
+}
+
+/* dark mode */
+body {
+    background-color: black;
+    color: white;
+}
+
+/* board styling */
+#board {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: repeat(var(--numRows), 52px);
+    grid-template-columns: repeat(var(--wordLength), 52px);
+    grid-gap: 2px;
+    color: black;
+}
+
+.square {
+    color: white;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #3a3a3c;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 32px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.correct {
+    background-color: #538d4e;
+}
+
+.half-right {
+    background-color: #b59f3b;
+}
+
+.wrong {
+    background-color: #3a3a3c;
+}
+
+
+
+/* keyboard styling */
+#keyboard {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 6px;
+}
+
+.key {
+  padding: 10px 14px;
+  font-size: 20px;
+  color: white;
+  border-radius: 2px;
+  background-color: #818384;
+  cursor: pointer;
+  user-select: none;
+}
+
+.key:hover {
+  background-color: #eee;
+}
+
+.key.correct {
+    background-color: #538d4e;
+    color: white;
+}
+
+.key.half-right {
+    background-color: #b59f3b;
+    color: black;
+}
+
+.key.wrong {
+    background-color: #3a3a3c;
+    color: white;
+}
+
+/* .key[data-key="Enter"],
+.key[data-key="Delete"] {
+  flex: 1.5;
+} */
