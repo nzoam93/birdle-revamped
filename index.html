@@ -10,17 +10,20 @@
 </head>
 <body>
     <h2 id="header">Birdle: Part 2</h2>
-    <div id="custom-alert" class="hidden"></div>
+    <div id="custom-alert"></div>
     <div id="game">
         <div id="board"></div>
         <div id="keyboard"></div>
-        <div id="gameInfo"></div>
+        <!-- <div id="gameInfo"></div> -->
     </div>
-    <div id="share-btn-container">
-        <button id="shareBtn" style="display:none;">
-            Share
-            <img src="./imgs/share-icon.png" alt="Share" style="margin-left: 6px;">
-        </button>
+
+    <div id="overlay" class="overlay-hidden">
+        <div id="share-btn-container">
+            <button id="shareBtn" style="display:none;">
+                Share
+                <img src="./imgs/share-icon.png" alt="Share" style="margin-left: 6px;">
+            </button>
+        </div>
     </div>
 </body>
 </html>

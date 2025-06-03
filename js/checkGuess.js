@@ -75,15 +75,18 @@ export function checkGuess(){
     //check to see if the word was right
     setNumberOfGuesses(numberOfGuesses + 1);
     if (guess === secretWord) {
-        showAlert("Congrats, you got it right!", 2000)
+        showAlert("Congrats, you got it right!", 2000, 15)
         setGameOver(true);
         document.getElementById("shareBtn").style.display = "block";
+        document.getElementById("overlay").classList.remove("overlay-hidden");
+
     }
     else {
         if (numberOfGuesses === 6) {
-            showAlert(`The secret word was ${secretWord}`, 3000)
+            showAlert(`The secret word was ${secretWord}`, 3000, 15)
             setGameOver(true);
             document.getElementById("shareBtn").style.display = "block";
+            document.getElementById("overlay").classList.remove("overlay-hidden");
         }
     }
 

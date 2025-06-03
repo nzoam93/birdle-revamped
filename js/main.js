@@ -34,6 +34,14 @@ document.addEventListener("keydown", handleKey);
 document.getElementById("shareBtn").addEventListener("click", () => {
     const text = generateShareText(numberOfGuesses);
     navigator.clipboard.writeText(text).then(() => {
-        showAlert("Result copied to clipboard", 4000, 860)
+        showAlert("Result copied to clipboard", 4000, 50);
+        document.getElementById("overlay").classList.add("overlay-hidden");
     });
+});
+
+//close overlay by clicking outside of it
+document.getElementById("overlay").addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) {
+    e.currentTarget.classList.add("overlay-hidden");
+  }
 });

@@ -118,7 +118,6 @@ body {
 }
 
 #shareBtn{
-    margin-top: 20px;
     height: 40px;
     width: 180px;
     background-color: #58a351;
@@ -152,12 +151,31 @@ body {
     font-size: 16px;
     z-index: 9999;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out, top 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     pointer-events: none;
 }
 
 #custom-alert.show {
     opacity: 1;
     /* top: 860px; dynamically done now in utils */
-    pointer-events: auto;
+    /* pointer-events: auto; */
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-start; */
+  padding-top: 25vh;
+}
+
+/* Hide the overlay by default */
+.overlay-hidden {
+  display: none !important;
 }
