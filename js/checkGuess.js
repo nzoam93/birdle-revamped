@@ -17,7 +17,7 @@ export function checkGuess(){
         letterCount[char] = (letterCount[char] || 0) + 1;
     }
 
-    
+
     // First pass: determine the green letters
     for (let i = 0; i < wordLength; i++) {
         const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
@@ -75,13 +75,13 @@ export function checkGuess(){
     //check to see if the word was right
     setNumberOfGuesses(numberOfGuesses + 1);
     if (guess === secretWord) {
-        document.getElementById("gameInfo").textContent = "Congrats, you got it right!"
+        showAlert("Congrats, you got it right!", 2000)
         setGameOver(true);
         document.getElementById("shareBtn").style.display = "block";
     }
     else {
         if (numberOfGuesses === 6) {
-            document.getElementById("gameInfo").textContent = `The secret word was ${secretWord}`
+            showAlert(`The secret word was ${secretWord}`, 3000)
             setGameOver(true);
             document.getElementById("shareBtn").style.display = "block";
         }
