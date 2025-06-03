@@ -8,6 +8,7 @@
 body {
     background-color: black;
     color: white;
+    font-family: 'Franklin';
 }
 
 /* board styling */
@@ -33,7 +34,6 @@ body {
     align-items: center;
     text-align: center;
     font-size: 32px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-transform: uppercase;
     border-radius: 2px;
 }

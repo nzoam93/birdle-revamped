@@ -10,15 +10,14 @@ export function checkGuess(){
     if (!dictionary.includes(guess)) {
         shakeRow(`row-${numberOfGuesses}`)
         showAlert("Guess not in word list")
-
         return; // Exit early, don't process the guess
     }
-
 
     for (let char of secretWord) { //used to keep track of words with multiple of the same letter
         letterCount[char] = (letterCount[char] || 0) + 1;
     }
 
+    
     // First pass: determine the green letters
     for (let i = 0; i < wordLength; i++) {
         const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
@@ -67,7 +66,7 @@ export function checkGuess(){
                 }
 
                 //update the emojiRow
-                emojiRow.push("⬜")
+                emojiRow.push("⬛")
             }
         }
     }
