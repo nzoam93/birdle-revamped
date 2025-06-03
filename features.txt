@@ -1,0 +1,25 @@
+Things I am trying to accomplish:
+
+General Wordle
+- create the board
+- create the keyboard
+- color-code the squares appropriately
+- if there's more than one of the same letter, handle that appropriately
+- color-code the keyboard appropriately
+- organize files in a structured manner
+- import a file of all the allowed words
+- effect if the user inputs a word that isn't actually in the dictionary
+- have it match stylistically to the wordle styling (including dark mode)
+- allow the user to use the virtual keyboard to play too
+- allow it to be dynamically structured so it can be words of varying lengths
+- update to once-a-day or general play functionality
+- sending out messages like Wordle allows 
+
+
+Birdle:
+- input in the functionality from birdle
+    - image
+    - only birds as the possibility
+    - unblurring as we go
+
+One-Off-Wordle:
