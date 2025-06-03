@@ -1,4 +1,14 @@
 // variables
+
+let dictionary = [];
+
+fetch('/word-bank.txt')
+  .then(res => res.text())
+  .then(text => {
+    dictionary = text.split('\n').map(word => word.trim().toUpperCase());
+  });
+
+
 const secretWord = "ROBIN"
 let currentGuess = [];
 let numberOfGuesses = 0;
@@ -9,11 +19,24 @@ let gameOver = false;
 //create the board
 function createBoard() {
     const board = document.getElementById("board");
-    for (let i = 0; i < numRows * wordLength; i++){
-        const square = document.createElement("div");
-        square.classList.add("square");
-        square.setAttribute("id", `square-${i}`);
-        board.appendChild(square);
+    // for (let i = 0; i < numRows * wordLength; i++){
+    //     const square = document.createElement("div");
+    //     square.classList.add("square");
+    //     square.setAttribute("id", `square-${i}`);
+    //     board.appendChild(square);
+    // }
+    for (let row = 0; row < numRows; row++) {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("row");
+        rowDiv.setAttribute("id", `row-${row}`);
+
+        for (let col = 0; col < wordLength; col++) {
+            const square = document.createElement("div");
+            square.classList.add("square");
+            square.setAttribute("id", `square-${row}-${col}`);
+            rowDiv.appendChild(square);
+        }
+    board.appendChild(rowDiv);
     }
 }
 
@@ -21,7 +44,7 @@ function createKeyboard(){
     const keyboardLayout = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-    ["Enter", "Z", "X", "C", "V", "B", "N", "M", "Delete"]
+    ["Enter", "Z", "X", "C", "V", "B", "N", "M", "Backspace"]
     ];
     const keyboardContainer = document.getElementById("keyboard");
     // keyboardContainer.innerHTML = "";
@@ -32,7 +55,8 @@ function createKeyboard(){
 
         for (const key of row) {
             const keyButton = document.createElement("button");
-            keyButton.textContent = key;
+            const display = key === "Backspace" ? "⌫" : key;
+            keyButton.textContent = display;
             keyButton.setAttribute("data-key", key);
             keyButton.classList.add("key");
 
@@ -71,7 +95,7 @@ function handleKey(e) {
 // update the board
 function updateBoard(){
     for (let i = 0; i < wordLength; i++) {
-        const square = document.getElementById(`square-${numberOfGuesses * wordLength + i}`);
+        const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
         square.textContent = currentGuess[i] || "";
     }
 }
@@ -81,6 +105,12 @@ function checkGuess(){
     let guess = currentGuess.join("")
     const letterCount = {}
 
+     // Check if guess is in dictionary of words
+    if (!dictionary.includes(guess)) {
+        shakeRow(`row-${numberOfGuesses}`)
+        return; // Exit early, don't process the guess
+    }
+
 
     for (let char of secretWord) { //used to keep track of words with multiple of the same letter
         letterCount[char] = (letterCount[char] || 0) + 1;
@@ -88,8 +118,7 @@ function checkGuess(){
 
     // First pass: determine the green letters
     for (let i = 0; i < wordLength; i++) {
-        const indexOffset = numberOfGuesses * wordLength;
-        const square = document.getElementById(`square-${indexOffset + i}`);
+        const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
         const letter = currentGuess[i];
         const keyButton = document.querySelector(`button[data-key="${letter}"]`);
         if (letter === secretWord[i]) {
@@ -106,8 +135,7 @@ function checkGuess(){
 
     //Second pass: determine the yellow letters
     for (let i = 0; i < wordLength; i++) {
-        const indexOffset = numberOfGuesses * wordLength;
-        const square = document.getElementById(`square-${indexOffset + i}`);
+        const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
         const letter = currentGuess[i];
         const keyButton = document.querySelector(`button[data-key="${letter}"]`);
         if (letter !== secretWord[i]) {
@@ -149,6 +177,15 @@ function checkGuess(){
     currentGuess = [];
 }
 
+function shakeRow(rowId) {
+  const row = document.getElementById(rowId);
+  row.classList.add('shake');
+
+  // Remove the class after animation ends so it can be triggered again later
+  row.addEventListener('animationend', () => {
+    row.classList.remove('shake');
+  }, { once: true });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     createBoard();

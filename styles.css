@@ -12,20 +12,22 @@ body {
 
 /* board styling */
 #board {
-    display: grid;
-    justify-content: center;
-    grid-template-rows: repeat(var(--numRows), 52px);
-    grid-template-columns: repeat(var(--wordLength), 52px);
-    grid-gap: 2px;
-    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.row{
+  display: flex;
+  gap: 5px; 
 }
 
 .square {
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border: 1px solid #3a3a3c;
-    font-weight: 300;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,32 +71,41 @@ body {
   padding: 10px 14px;
   font-size: 20px;
   color: white;
-  border-radius: 2px;
+  height: 60px;
+  min-width: 50px;
+  border-radius: 5px;
   background-color: #818384;
   cursor: pointer;
   user-select: none;
 }
 
 .key:hover {
-  background-color: #eee;
+  background-color: darkgrey;
 }
 
 .key.correct {
     background-color: #538d4e;
-    color: white;
 }
 
 .key.half-right {
     background-color: #b59f3b;
-    color: black;
 }
 
 .key.wrong {
     background-color: #3a3a3c;
-    color: white;
 }
 
-/* .key[data-key="Enter"],
-.key[data-key="Delete"] {
-  flex: 1.5;
-} */
+#gameInfo{
+    font-size: 70px;
+    color: green;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
