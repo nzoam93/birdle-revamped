@@ -141,36 +141,40 @@ body {
 
 #shareBtn{
     position: fixed;
-    top: 25vh;
+    top: 22vh;
     height: 40px;
     width: 180px;
     background-color: #58a351;
     color: white;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
 }
 
-.newGameBtn{
+.infoScreenButton, .postGameBtn{
+    margin-top: 10px;
     text-align: center;
-    position: fixed;
     height: 40px;
     width: 180px;
     background-color: #b59f3b;
     color: white;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
 }
 
+.postGameBtn{
+  position: fixed;
+}
+
 .easy{
-      top: 30vh;
+      top: 28vh;
 }
 
 .hard{
-      top: 35vh;
+      top: 34vh;
 }
 
 #shareBtn img {

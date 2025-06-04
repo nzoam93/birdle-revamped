@@ -23,3 +23,6 @@ export function setNumberOfGuesses(n) {
 export function setDictionary(dict) {
   dictionary = dict;
 }
+export function setGuessResults(value){
+  guessResults = value
+}

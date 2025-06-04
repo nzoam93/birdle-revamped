@@ -15,16 +15,16 @@
         <img src="./imgs/gooseImage.jpeg" alt="goose-image">
     </h2>
     <div id="infoScreen">
-        <p> Welcome to <strong>Birdle</strong> — the bird-brained cousin of Wordle! <br>
-You can guess any valid English word, but the final answer will always be a bird. </p>
+        <p> Welcome to <strong>Birdle</strong> — the bird-brained cousin of Wordle!</p>
+        <p>You can guess any valid English word, but the final answer will always be a bird. </p>
 
-<p>A blurry bird image clue is below the keyboard — each guess sharpens the view until the big reveal!<br>
-(On mobile, you may need to scroll down.)</p>
+        <p>A blurry bird clue is below the keyboard. Each guess sharpens the image until the big reveal!<br>
+        (On mobile, you may need to scroll down.)</p>
 
-<p> 🟢 <strong>Easy Mode</strong> — familiar birds you’ve probably seen before<br>
-🔴 <strong>Hard Mode</strong> — for true ornithologists and bird nerds only!</p>
-        <button class="newGameBtn easy">New Game (Easy)</button>
-        <button class="newGameBtn hard">New Game (Hard)</button>
+        <p> 🟢 <strong>Easy Mode</strong> — familiar birds you’ve probably seen before<br>
+        🔴 <strong>Hard Mode</strong> — for true ornithologists and bird nerds only!</p>
+        <button class="newGameBtn easy infoScreenButton">New Game (Easy)</button>
+        <button class="newGameBtn hard infoScreenButton">New Game (Hard)</button>
     </div>
     <div id="custom-alert"></div>
     <div id="game">
@@ -38,12 +38,10 @@ You can guess any valid English word, but the final answer will always be a bird
                 Share
                 <img src="./imgs/share-icon.png" alt="Share">
             </button>
-            <button class="newGameBtn easy" style="display: none;">New Game (Easy)</button>
-            <button class="newGameBtn hard" style="display: none;">New Game (Hard)</button>
+            <button class="newGameBtn easy postGameBtn" style="display: none;">New Game (Easy)</button>
+            <button class="newGameBtn hard postGameBtn" style="display: none;">New Game (Hard)</button>
         </div>
         <img id ="bird" style="display: none;">
     </div>
-
-
 </body>
 </html>

@@ -2,7 +2,7 @@
 import { createBoard } from "./board.js";
 import { createKeyboard } from "./keyboard.js";
 import { handleKey } from "./handleKey.js";
-import {numRows, wordLength, setSecretWord, setDictionary, numberOfGuesses, secretWord, currentGuess, gameOver, setCurrentGuess, setNumberOfGuesses, setGameOver } from "./gameState.js";
+import {numRows, wordLength, setSecretWord, setDictionary, numberOfGuesses, secretWord, setCurrentGuess, setNumberOfGuesses, setGameOver, setGuessResults } from "./gameState.js";
 import { generateShareText } from "./generateShareText.js";
 import { showAlert } from "./utils.js";
 import { fetchBirdImage } from "./birdFetch.js";
@@ -23,7 +23,7 @@ document.addEventListener("keydown", handleKey);
 document.getElementById("shareBtn").addEventListener("click", () => {
     const text = generateShareText(numberOfGuesses);
     navigator.clipboard.writeText(text).then(() => {
-        showAlert("Result copied to clipboard. Paste to share results!", 5000, 25);
+        showAlert("Result copied to clipboard. Paste to share results!", 5000, 22);
     });
 });
 
@@ -46,6 +46,7 @@ function resetGameState(){
   setCurrentGuess([]);
   setNumberOfGuesses(0);
   setGameOver(false);
+  setGuessResults([]);
 
   //reset board and keyboard
   const board = document.getElementById("board");
