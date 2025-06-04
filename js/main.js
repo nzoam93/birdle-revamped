@@ -49,7 +49,7 @@ document.getElementById("shareBtn").addEventListener("click", () => {
 });
 
 //birdle related
-document.getElementById("bird").style.filter = "blur(15px)";
+document.getElementById("bird").style.filter = "blur(20px)";
 fetchBirdImage(secretWord).then(url => {
     if (url) {
        document.getElementById("bird").src = url;
