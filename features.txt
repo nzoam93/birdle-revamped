@@ -12,9 +12,7 @@ General Wordle
 - have it match stylistically to the wordle styling (including dark mode)
 - allow the user to use the virtual keyboard to play too
 - allow it to be dynamically structured so it can be words of varying lengths
-- update to once-a-day or general play functionality
-- sending out messages like Wordle allows 
-
+- sending out messages like Wordle allows
 
 Birdle:
 - input in the functionality from birdle
@@ -23,3 +21,11 @@ Birdle:
     - unblurring as we go
 
 One-Off-Wordle:
+
+
+Still to do:
+- update to once-a-day or general play functionality
+- add six-letter words?
+- have easy/hard mode to make use of the obscure birds 
+- add a 'donate' button
+- advertise game
