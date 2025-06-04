@@ -164,6 +164,10 @@ body {
     border: none;
 }
 
+.infoScreenButton{
+  margin-top: 9px;
+}
+
 .postGameBtn{
   position: fixed;
 }
@@ -198,12 +202,14 @@ body {
     background-color: #333;
     color: white;
     padding: 12px 24px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
     z-index: 9999;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     pointer-events: none;
+    width: 180px;
+    text-align: center;
 }
 
 #custom-alert.show {
