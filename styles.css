@@ -1,8 +1,14 @@
 /* centering */
-#gameInfo, #game{
+#gameInfo, #game, #infoScreen{
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+}
+
+#infoScreen p{
+  font-size: 22px;
+  font-style: italic;
 }
 
 #header{
@@ -135,7 +141,7 @@ body {
 
 #shareBtn{
     position: fixed;
-    top: 30vh;
+    top: 25vh;
     height: 40px;
     width: 180px;
     background-color: #58a351;
@@ -146,7 +152,7 @@ body {
     border: none;
 }
 
-#newGameBtnEasy, #newGameBtnHard{
+.newGameBtn{
     text-align: center;
     position: fixed;
     height: 40px;
@@ -159,12 +165,12 @@ body {
     border: none;
 }
 
-#newGameBtnEasy{
-      top: 35vh;
+.easy{
+      top: 30vh;
 }
 
-#newGameBtnHard{
-      top: 40vh;
+.hard{
+      top: 35vh;
 }
 
 #shareBtn img {
@@ -177,14 +183,13 @@ body {
     background-color: #538d4e;
 }
 
-#newGameBtnEasy:hover, #newGameBtnHard:hover{
+.newGameBtn:hover{
     background-color: #7b6d2c;
 }
 
 /* alert  */
 #custom-alert {
     position: fixed;
-    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
@@ -200,8 +205,6 @@ body {
 
 #custom-alert.show {
     opacity: 1;
-    /* top: 860px; dynamically done now in utils */
-    /* pointer-events: auto; */
 }
 
 /* bird picture */
@@ -210,7 +213,8 @@ body {
   width: 400px;
   height: 400px;
   margin-top: 30px;
-  z-index: 1910192021;
+  z-index: 10000;
+  border: none;
 }
 
 #board-container.blur {

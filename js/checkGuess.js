@@ -77,19 +77,22 @@ export function checkGuess(){
     if (guess === secretWord) {
         showAlert("Congrats, you got it right!", 2000, 15)
         setGameOver(true);
-        document.getElementById("shareBtn").style.display = "block";
-        document.getElementById("newGameBtnEasy").style.display = "block";
-        document.getElementById("newGameBtnHard").style.display = "block";
         document.getElementById("board-container").classList.add("blur");
+        document.getElementById("shareBtn").style.display = "block";
+        document.querySelectorAll(".newGameBtn").forEach(button => {
+            button.style.display = "block";
+        });
+
     }
     else {
         if (numberOfGuesses === 6) {
             showAlert(`The secret word was ${secretWord}`, 2000, 15)
             setGameOver(true);
-            document.getElementById("shareBtn").style.display = "block";
-            document.getElementById("newGameBtnEasy").style.display = "block";
-            document.getElementById("newGameBtnHard").style.display = "block";
             document.getElementById("board-container").classList.add("blur");
+            document.getElementById("shareBtn").style.display = "block";
+            document.querySelectorAll(".newGameBtn").forEach(button => {
+                button.style.display = "block";
+            });
         }
     }
 

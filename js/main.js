@@ -23,23 +23,25 @@ document.addEventListener("keydown", handleKey);
 document.getElementById("shareBtn").addEventListener("click", () => {
     const text = generateShareText(numberOfGuesses);
     navigator.clipboard.writeText(text).then(() => {
-        showAlert("Result copied to clipboard. Paste to share results!", 5000, 30);
+        showAlert("Result copied to clipboard. Paste to share results!", 5000, 25);
     });
 });
 
 // event listener - new game
-let difficulty = "easy";
-document.getElementById('newGameBtnEasy').addEventListener("click", () => {
-  difficulty = "easy";
-  newGame();
-})
-
-document.getElementById('newGameBtnHard').addEventListener("click", () => {
-  difficulty = "hard";
-  newGame();
-})
+const newGameButtons = document.querySelectorAll(".newGameBtn");
+newGameButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    // Determine difficulty by checking the classList
+    let difficulty = button.classList.contains("easy") ? "easy" : "hard";
+    newGame(difficulty);
+  });
+});
 
 function resetGameState(){
+  // hide the info screen and unhide the bird
+  document.getElementById('infoScreen').style.display = "none";
+  document.getElementById('bird').style.display = "block";
+
   // reset game state
   setCurrentGuess([]);
   setNumberOfGuesses(0);
@@ -53,20 +55,19 @@ function resetGameState(){
 
   //hide the buttons again
   document.getElementById("shareBtn").style.display = "none";
-  document.getElementById("newGameBtnEasy").style.display = "none";
-  document.getElementById("newGameBtnHard").style.display = "none";
-
+  document.querySelectorAll(".newGameBtn").forEach(button => {
+    button.style.display = "none";
+  });
   //remove board blur
   document.getElementById("board-container").classList.remove("blur");
 }
 
 // Game Logic
-function newGame(){
+function newGame(difficulty){
   // reset to new game
   resetGameState()
 
   // choose a random word
-
   if (difficulty === "easy"){
     let randomWord = birdWordsEasy[Math.floor(Math.random() * birdWordsEasy.length)];
     setSecretWord(randomWord.toUpperCase())
@@ -75,7 +76,6 @@ function newGame(){
     let randomWord = birdWordsHard[Math.floor(Math.random() * birdWordsHard.length)];
     setSecretWord(randomWord.toUpperCase())
   }
-  console.log(secretWord)
 
   fetch('./word-bank.txt')
     .then(res => res.text())
@@ -96,8 +96,6 @@ function newGame(){
       board.style.setProperty("--wordLength", wordLength);
     });
 
-
-
   //birdle related
   document.getElementById("bird").style.filter = "blur(20px)";
   fetchBirdImage(secretWord).then(url => {
@@ -107,4 +105,4 @@ function newGame(){
   });
 }
 
-newGame()
+// newGame()

@@ -52,12 +52,12 @@ const randomBirdFacts = [
 ];
 
 export function generateShareText(guessesUsed) {
-    let result = `Birdle Results: ${guessesUsed}/6\n\n`;
+    let result = `I got today's Birdle in ${guessesUsed} ${guessesUsed > 1 ? 'tries' : 'try'}!\n\n`;
     guessResults.forEach(row => {
         result += row.join('') + '\n';
     });
     let randomBirdFact = randomBirdFacts[Math.floor(Math.random() * randomBirdFacts.length)]
-    result += `\nEnjoy a fun bird fact: ${randomBirdFact}\n`
+    result += `\nDid you know? ${randomBirdFact}\n`
     result += "\nYou can play Birdle at https://nzoam93.github.io/birdle-revamped/"
     console.log(result)
     return result;
