@@ -78,7 +78,6 @@ export function checkGuess(){
         showAlert("Congrats, you got it right!", 2000, 15)
         setGameOver(true);
         document.getElementById("shareBtn").style.display = "block";
-        // document.getElementById("overlay").classList.remove("overlay-hidden");
         document.getElementById("board-container").classList.add("blur");
 
     }
@@ -87,18 +86,16 @@ export function checkGuess(){
             showAlert(`The secret word was ${secretWord}`, 3000, 15)
             setGameOver(true);
             document.getElementById("shareBtn").style.display = "block";
-            // document.getElementById("overlay").classList.remove("overlay-hidden");
         }
     }
 
     //set the bird blurriness
     if (!gameOver){
-        let blurFactor = 20 - numberOfGuesses*4;
+        let blurFactor = 20 - numberOfGuesses * 3;
         let blurLevel = "blur("+blurFactor+"px)";
         document.getElementById("bird").style.filter = blurLevel;
     }
     else {
-        console.log("hi")
         let blurLevel = "blur(0px)";
         document.getElementById("bird").style.filter = blurLevel;
     }

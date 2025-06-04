@@ -167,24 +167,6 @@ body {
     /* pointer-events: auto; */
 }
 
-/* Overlay */
-/* #overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  padding-top: 25vh;
-} */
-
-/* Hide the overlay by default */
-/* .overlay-hidden {
-  display: none !important;
-} */
-
 /* bird picture */
 #bird{
   position: relative;

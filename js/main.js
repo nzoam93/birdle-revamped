@@ -2,14 +2,12 @@
 import { createBoard } from "./board.js";
 import { createKeyboard } from "./keyboard.js";
 import { handleKey } from "./handleKey.js";
-import {numRows, wordLength, dictionary, setSecretWord, setDictionary, numberOfGuesses, secretWord } from "./gameState.js";
+import {numRows, wordLength, setSecretWord, setDictionary, numberOfGuesses, secretWord } from "./gameState.js";
 import { generateShareText } from "./generateShareText.js";
 import { showAlert } from "./utils.js";
+import { fetchBirdImage } from "./birdFetch.js";
 
-// const birdWords = [
-//   "goose"
-// ]
-
+// secretWord
 const birdWords = [
   "Booby","Crane","Eagle","Egret","Finch","Goose","Grebe","Heron","Quail","Raven","Robin","Stork","Swift"
 ];
@@ -20,7 +18,7 @@ const completeBirdWords = [
 
 let randomWord = birdWords[Math.floor(Math.random() * birdWords.length)];
 setSecretWord(randomWord.toUpperCase())
-console.log(randomWord)
+
 
 fetch('./word-bank.txt')
   .then(res => res.text())
@@ -39,63 +37,21 @@ fetch('./word-bank.txt')
     board.style.setProperty("--wordLength", wordLength);
   });
 
-// handle key presses
+// event listener - keydown
 document.addEventListener("keydown", handleKey);
 
+// event listener - share button
 document.getElementById("shareBtn").addEventListener("click", () => {
     const text = generateShareText(numberOfGuesses);
     navigator.clipboard.writeText(text).then(() => {
         showAlert("Result copied to clipboard", 4000, 50);
-        document.getElementById("overlay").classList.add("overlay-hidden");
     });
 });
 
 //birdle related
-document.getElementById("bird").style.filter = "blur(0px)";
-
-async function fetchBirdImage(birdName) {
-  const response = await fetch(`https://api.inaturalist.org/v1/search?q=${encodeURIComponent(birdName)}&sources=taxa&taxon_id=3`);
-  const data = await response.json();
-  console.log(data)
-  // const bird = data.results?.find(result => result.record?.default_photo && result.record?.iconic_taxon_name === "Aves");
-  const bird = data.results?.find(result => {
-    const record = result.record;
-    return (
-      record?.default_photo &&
-      record?.iconic_taxon_name === "Aves" &&
-      record?.rank === "species"
-    );
-  });
-  return bird?.record?.default_photo?.medium_url || './imgs/fallback-image.jpeg';
-}
-
+document.getElementById("bird").style.filter = "blur(15px)";
 fetchBirdImage(secretWord).then(url => {
     if (url) {
        document.getElementById("bird").src = url;
     }
 });
-
-
-// async function isBirdReal(birdName) {
-//   const response = await fetch(`https://api.inaturalist.org/v1/search?q=${birdName}&sources=taxa`);
-//   const data = await response.json();
-//   const bird = data.results?.find(result => result.record?.default_photo);
-//   return bird
-// }
-
-// async function checkBirdImages(completeBirdWords) {
-//   const missingImages = [];
-
-//   for (const bird of completeBirdWords) {
-//     const imageUrl = await isBirdReal(bird);
-//     if (!imageUrl) {
-//       console.warn(`No image found for: ${bird}`);
-//       missingImages.push(bird);
-//     }
-//   }
-
-//   console.log("Birds with missing images:", missingImages);
-//   return missingImages;
-// }
-
-// checkBirdImages(birdWords)
