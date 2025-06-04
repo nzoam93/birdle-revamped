@@ -78,14 +78,18 @@ export function checkGuess(){
         showAlert("Congrats, you got it right!", 2000, 15)
         setGameOver(true);
         document.getElementById("shareBtn").style.display = "block";
+        document.getElementById("newGameBtnEasy").style.display = "block";
+        document.getElementById("newGameBtnHard").style.display = "block";
         document.getElementById("board-container").classList.add("blur");
-
     }
     else {
         if (numberOfGuesses === 6) {
-            showAlert(`The secret word was ${secretWord}`, 3000, 15)
+            showAlert(`The secret word was ${secretWord}`, 2000, 15)
             setGameOver(true);
             document.getElementById("shareBtn").style.display = "block";
+            document.getElementById("newGameBtnEasy").style.display = "block";
+            document.getElementById("newGameBtnHard").style.display = "block";
+            document.getElementById("board-container").classList.add("blur");
         }
     }
 

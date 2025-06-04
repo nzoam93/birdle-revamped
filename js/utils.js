@@ -8,13 +8,16 @@ export function shakeRow(rowId) {
   }, { once: true });
 }
 
+let alertTimeoutId; //allows you to run multiple alerts one after the next without them interfering
+
 export function showAlert(message, duration = 2000, position=15) {
     const alertBox = document.getElementById("custom-alert");
     alertBox.textContent = message;
     alertBox.classList.add("show");
     alertBox.style.top = `${position}vh`;  // dynamically set position
 
-    setTimeout(() => {
+    clearTimeout(alertTimeoutId);
+    alertTimeoutId = setTimeout(() => {
         alertBox.classList.remove("show");
     }, duration);
 }

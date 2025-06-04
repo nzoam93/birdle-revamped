@@ -127,9 +127,10 @@ body {
 }
 
 /* share button  */
-#share-btn-container{
+#post-game-buttons-container{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #shareBtn{
@@ -141,18 +142,43 @@ body {
     color: white;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
     border: none;
+}
+
+#newGameBtnEasy, #newGameBtnHard{
+    text-align: center;
+    position: fixed;
+    height: 40px;
+    width: 180px;
+    background-color: #b59f3b;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+}
+
+#newGameBtnEasy{
+      top: 35vh;
+}
+
+#newGameBtnHard{
+      top: 40vh;
 }
 
 #shareBtn img {
     vertical-align: middle;
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
 }
 
 #shareBtn:hover{
     background-color: #538d4e;
+}
+
+#newGameBtnEasy:hover, #newGameBtnHard:hover{
+    background-color: #7b6d2c;
 }
 
 /* alert  */
