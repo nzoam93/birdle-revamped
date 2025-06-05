@@ -8,13 +8,9 @@ import { showAlert } from "./utils.js";
 import { fetchBirdImage } from "./birdFetch.js";
 
 // bird options
-// const birdWordsEasy = [
-//   "Booby","Crane","Eagle","Egret","Finch","Goose","Heron","Quail","Raven","Robin","Stork","Swift"
-// ];
-
 const birdWordsEasy = [
-  "Heron"
-]
+  "Booby","Crane","Eagle","Egret","Finch","Goose","Heron","Quail","Raven","Robin","Stork","Swift"
+];
 
 const birdWordsHard = [
   "Asity","Batis","Besra","Carib","Crake","Diver","Fairy","Galah","Grebe","Hobby","Maleo","Mango","Mesia","Miner","Minla","Monal","Munia","Noddy","Ouzel","Potoo","Prion","Scaup","Sibia","Stint","Sylph","Topaz","Vanga","Veery"
@@ -27,7 +23,7 @@ document.addEventListener("keydown", handleKey);
 document.getElementById("shareBtn").addEventListener("click", () => {
     const text = generateShareText(numberOfGuesses);
     navigator.clipboard.writeText(text).then(() => {
-        showAlert("Result copied to clipboard. Paste to share results!", 5000, 22);
+        showAlert("Result copied to clipboard. Paste to share results!", 4000, 22);
     });
 });
 

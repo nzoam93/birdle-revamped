@@ -101,7 +101,7 @@ export function checkGuess(){
 
     //set the bird blurriness
     if (!gameOver){
-        let blurFactor = 20 - numberOfGuesses * 4;
+        let blurFactor = 20 - numberOfGuesses * 6;
         let blurLevel = "blur("+blurFactor+"px)";
         document.getElementById("bird").style.filter = blurLevel;
     }
