@@ -8,9 +8,13 @@ import { showAlert } from "./utils.js";
 import { fetchBirdImage } from "./birdFetch.js";
 
 // bird options
+// const birdWordsEasy = [
+//   "Booby","Crane","Eagle","Egret","Finch","Goose","Heron","Quail","Raven","Robin","Stork","Swift"
+// ];
+
 const birdWordsEasy = [
-  "Booby","Crane","Eagle","Egret","Finch","Goose","Heron","Quail","Raven","Robin","Stork","Swift"
-];
+  "Level"
+]
 
 const birdWordsHard = [
   "Asity","Batis","Besra","Carib","Crake","Diver","Fairy","Galah","Grebe","Hobby","Maleo","Mango","Mesia","Miner","Minla","Monal","Munia","Noddy","Ouzel","Potoo","Prion","Scaup","Sibia","Stint","Sylph","Topaz","Vanga","Veery"

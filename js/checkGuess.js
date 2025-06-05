@@ -2,6 +2,18 @@ import {currentGuess, secretWord, wordLength, numberOfGuesses, dictionary, setCu
 import { shakeRow, showAlert } from "./utils.js"
 import { randomBirdFacts } from "./generateShareText.js"
 
+function endGameActions(){
+    // do once the game ends (regardless of win or lose)
+    setGameOver(true);
+    document.getElementById("board-container").classList.add("blur");
+    document.getElementById("shareBtn").style.display = "block";
+    document.querySelectorAll(".newGameBtn").forEach(button => {
+        button.style.display = "block";
+    });
+    document.getElementById("randomBirdFact").style.display = "block";
+    document.getElementById("randomBirdFact").innerHTML = "Did you know? " + randomBirdFacts[Math.floor(Math.random() * randomBirdFacts.length)];
+}
+
 export function checkGuess(){
     let emojiRow = []
     let guess = currentGuess.join("")
@@ -14,17 +26,19 @@ export function checkGuess(){
         return; // Exit early, don't process the guess
     }
 
-    for (let char of secretWord) { //used to keep track of words with multiple of the same letter
+    // keep track of words with multiple of the same letter
+    for (let char of secretWord) {
         letterCount[char] = (letterCount[char] || 0) + 1;
     }
 
-
-    // First pass: determine the green letters
+    // Determine the colors
     for (let i = 0; i < wordLength; i++) {
         const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
         const letter = currentGuess[i];
         const keyButton = document.querySelector(`button[data-key="${letter}"]`);
-        if (letter === secretWord[i]) {
+
+        //green letters
+        if (letter === secretWord[i]){
             square.classList.add("correct");
             letterCount[letter]-- // don't allow the same letter to be counted twice
 
@@ -33,19 +47,11 @@ export function checkGuess(){
                 keyButton.classList.remove("half-right", "wrong");
                 keyButton.classList.add("correct");
             }
-        }
-    }
 
-    //Second pass: determine the yellow letters
-    for (let i = 0; i < wordLength; i++) {
-        const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
-        const letter = currentGuess[i];
-        const keyButton = document.querySelector(`button[data-key="${letter}"]`);
-        if (letter === secretWord[i]){
             //update the emojiRow
             emojiRow.push("🟩")
         }
-        if (letter !== secretWord[i]) {
+        else {
             if (secretWord.includes(letter) && letterCount[letter] > 0){
                 square.classList.add("half-right");
                 letterCount[letter]--;
@@ -78,26 +84,12 @@ export function checkGuess(){
     setNumberOfGuesses(numberOfGuesses + 1);
     if (guess === secretWord) {
         showAlert("Congrats, you got it right!", 2000, 15)
-        setGameOver(true);
-        document.getElementById("board-container").classList.add("blur");
-        document.getElementById("shareBtn").style.display = "block";
-        document.querySelectorAll(".newGameBtn").forEach(button => {
-            button.style.display = "block";
-        });
-        document.getElementById("randomBirdFact").style.display = "block";
-        document.getElementById("randomBirdFact").innerHTML = "Did you know? " + randomBirdFacts[Math.floor(Math.random() * randomBirdFacts.length)];
+        endGameActions()
     }
     else {
         if (numberOfGuesses === 6) {
             showAlert(`The secret word was ${secretWord}`, 2000, 15)
-            setGameOver(true);
-            document.getElementById("board-container").classList.add("blur");
-            document.getElementById("shareBtn").style.display = "block";
-            document.querySelectorAll(".newGameBtn").forEach(button => {
-                button.style.display = "block";
-            });
-            document.getElementById("randomBirdFact").style.display = "block";
-            document.getElementById("randomBirdFact").innerHTML = "Did you know? " + randomBirdFacts[Math.floor(Math.random() * randomBirdFacts.length)];
+            endGameActions()
         }
     }
 
@@ -111,7 +103,6 @@ export function checkGuess(){
         let blurLevel = "blur(0px)";
         document.getElementById("bird").style.filter = blurLevel;
     }
-
 
     //reset the guess array
     setCurrentGuess([]);
