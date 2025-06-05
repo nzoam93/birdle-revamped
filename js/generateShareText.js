@@ -1,6 +1,6 @@
 import { guessResults } from './gameState.js';
 
-const randomBirdFacts = [
+export const randomBirdFacts = [
   "The fastest bird is the peregrine falcon, which can dive at speeds over 240 mph (386 km/h).",
   "Owls can rotate their heads up to 270 degrees.",
   "Some birds, like the Arctic tern, migrate thousands of miles every year — up to 44,000 miles round trip.",

@@ -142,8 +142,8 @@ body {
 #shareBtn{
     position: fixed;
     top: 22vh;
-    height: 40px;
-    width: 180px;
+    height: 33px;
+    width: 175px;
     background-color: #58a351;
     color: white;
     border-radius: 50px;
@@ -154,8 +154,8 @@ body {
 
 .infoScreenButton, .postGameBtn{
     text-align: center;
-    height: 40px;
-    width: 180px;
+    height: 33px;
+    width: 175px;
     background-color: #b59f3b;
     color: white;
     border-radius: 50px;
@@ -233,4 +233,8 @@ body {
 /* prevent double-tapping to zoom */
 html, body, #keyboard, .keyboard-row, .key{
   touch-action: manipulation;
+}
+
+#randomBirdFact{
+  margin-top: 10px;
 }

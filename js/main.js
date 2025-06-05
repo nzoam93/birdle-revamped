@@ -38,8 +38,9 @@ newGameButtons.forEach(button => {
 });
 
 function resetGameState(){
-  // hide the info screen and unhide the bird
+  // hide the info screen and bird fact unhide the bird
   document.getElementById('infoScreen').style.display = "none";
+  document.getElementById("randomBirdFact").style.display = "none";
   document.getElementById('bird').style.display = "block";
 
   // reset game state
@@ -97,7 +98,7 @@ function newGame(difficulty){
       board.style.setProperty("--wordLength", wordLength);
     });
 
-  //birdle related
+  //birdle blur
   document.getElementById("bird").style.filter = "blur(20px)";
   fetchBirdImage(secretWord).then(url => {
       if (url) {
@@ -105,5 +106,3 @@ function newGame(difficulty){
       }
   });
 }
-
-// newGame()

@@ -1,5 +1,6 @@
 import {currentGuess, secretWord, wordLength, numberOfGuesses, dictionary, setCurrentGuess, setGameOver, setNumberOfGuesses, guessResults, gameOver } from "./gameState.js"
 import { shakeRow, showAlert } from "./utils.js"
+import { randomBirdFacts } from "./generateShareText.js"
 
 export function checkGuess(){
     let emojiRow = []
@@ -83,7 +84,8 @@ export function checkGuess(){
         document.querySelectorAll(".newGameBtn").forEach(button => {
             button.style.display = "block";
         });
-
+        document.getElementById("randomBirdFact").style.display = "block";
+        document.getElementById("randomBirdFact").innerHTML = "Did you know? " + randomBirdFacts[Math.floor(Math.random() * randomBirdFacts.length)];
     }
     else {
         if (numberOfGuesses === 6) {
@@ -94,6 +96,8 @@ export function checkGuess(){
             document.querySelectorAll(".newGameBtn").forEach(button => {
                 button.style.display = "block";
             });
+            document.getElementById("randomBirdFact").style.display = "block";
+            document.getElementById("randomBirdFact").innerHTML = "Did you know? " + randomBirdFacts[Math.floor(Math.random() * randomBirdFacts.length)];
         }
     }
 
