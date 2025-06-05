@@ -32,9 +32,6 @@ export function checkGuess(){
                 keyButton.classList.remove("half-right", "wrong");
                 keyButton.classList.add("correct");
             }
-
-            //update the emojiRow
-            emojiRow.push("🟩")
         }
     }
 
@@ -43,6 +40,10 @@ export function checkGuess(){
         const square = document.getElementById(`square-${numberOfGuesses}-${i}`);
         const letter = currentGuess[i];
         const keyButton = document.querySelector(`button[data-key="${letter}"]`);
+        if (letter === secretWord[i]){
+            //update the emojiRow
+            emojiRow.push("🟩")
+        }
         if (letter !== secretWord[i]) {
             if (secretWord.includes(letter) && letterCount[letter] > 0){
                 square.classList.add("half-right");
