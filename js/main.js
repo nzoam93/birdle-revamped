@@ -13,7 +13,7 @@ import { fetchBirdImage } from "./birdFetch.js";
 // ];
 
 const birdWordsEasy = [
-  "Level"
+  "Heron"
 ]
 
 const birdWordsHard = [

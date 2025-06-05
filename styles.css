@@ -142,7 +142,7 @@ body {
 #shareBtn{
     position: fixed;
     top: 22vh;
-    height: 33px;
+    height: 40px;
     width: 175px;
     background-color: #58a351;
     color: white;
@@ -154,7 +154,7 @@ body {
 
 .infoScreenButton, .postGameBtn{
     text-align: center;
-    height: 33px;
+    height: 40px;
     width: 175px;
     background-color: #b59f3b;
     color: white;
