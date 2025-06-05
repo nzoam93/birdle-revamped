@@ -13,7 +13,7 @@ const birdWordsEasy = [
 ];
 
 const birdWordsHard = [
-  "Argus","Asity","Batis","Besra","Carib","Comet","Crake","Diver","Fairy","Galah","Grass","Grebe","Hobby","Maleo","Mango","Mesia","Miner","Minla","Monal","Munia","Noddy","Ouzel","Potoo","Prion","Scaup","Sibia","Stint","Sylph","Topaz","Tsuru","Vanga","Veery"
+  "Asity","Batis","Besra","Carib","Crake","Diver","Fairy","Galah","Grebe","Hobby","Maleo","Mango","Mesia","Miner","Minla","Monal","Munia","Noddy","Ouzel","Potoo","Prion","Scaup","Sibia","Stint","Sylph","Topaz","Vanga","Veery"
 ]
 
 // event listener - keydown
