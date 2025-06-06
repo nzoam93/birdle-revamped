@@ -14,6 +14,23 @@ export async function fetchBirdImage(birdName) {
   return bird?.record?.default_photo?.medium_url || './imgs/fallback-image.jpeg';
 }
 
+export async function fetchBirdFact(birdName){
+  const formattedName = birdName
+    .toLowerCase()
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+  const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(formattedName)}`)
+  const data = await response.json();
+  const birdFact = data.extract || "Benjamin Franklink advocated for the turkey to be the national bird of the United States, and it only narrowly lost to the bald eagle.";
+  if (birdFact.split(" ").length < 20){
+    birdFact = "Benjamin Franklink advocated for the turkey to be the national bird of the United States, and it only narrowly lost to the bald eagle.";
+  }
+  console.log(data);
+  console.log(birdFact);
+  return birdFact;
+}
+
 // async function isBirdReal(birdName) {
 //   const response = await fetch(`https://api.inaturalist.org/v1/search?q=${birdName}&sources=taxa`);
 //   const data = await response.json();
