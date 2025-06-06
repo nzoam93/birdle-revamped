@@ -9,6 +9,7 @@
 #infoScreen p{
   font-size: 22px;
   font-style: italic;
+  max-width: 550px;
 }
 
 #header{
