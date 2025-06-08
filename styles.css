@@ -11,8 +11,7 @@ body {
   font-family: "Georgia", "Times New Roman", serif;
   background-color: #0F1A24;
   color: #F5ECD9;
-  margin: 0;
-  padding: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -292,7 +291,7 @@ html, body, #keyboard, .keyboard-row, .key{
 
 .cloud1 {
   top: 15vh;
-  left: 0%;
+  left: 5%;
   animation-duration: 50s;
 }
 
@@ -304,7 +303,7 @@ html, body, #keyboard, .keyboard-row, .key{
 
 .cloud3 {
   top: 45vh;
-  left: 20%;
+  left: 30%;
   animation-duration: 30s;
 }
 
