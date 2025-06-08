@@ -22,12 +22,10 @@ export async function fetchBirdFact(birdName){
     .join(" ");
   const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(formattedName)}`)
   const data = await response.json();
-  const birdFact = data.extract || "Benjamin Franklink advocated for the turkey to be the national bird of the United States, and it only narrowly lost to the bald eagle.";
+  let birdFact = data.extract || "Benjamin Franklink advocated for the turkey to be the national bird of the United States, and it only narrowly lost to the bald eagle.";
   if (birdFact.split(" ").length < 20){
     birdFact = "Benjamin Franklink advocated for the turkey to be the national bird of the United States, and it only narrowly lost to the bald eagle.";
   }
-  console.log(data);
-  console.log(birdFact);
   return birdFact;
 }
 

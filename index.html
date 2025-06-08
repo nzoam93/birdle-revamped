@@ -19,22 +19,34 @@
   gtag('config', 'G-2WPCV615V3');
 </script>
 <body>
-    <h2 id="header">
-        Birdle
-        <img src="./imgs/gooseImage.jpeg" alt="goose-image">
-    </h2>
     <div id="infoScreen">
-        <p> Welcome to <strong>Birdle</strong> — the bird-themed variation of Wordle!</p>
+        <h1 class="title">
+            Birdle
+            <img src="./imgs/titleBird.png" alt="bird-image">
+        </h1>
 
-        <p>A blurry bird clue is located below the keyboard. Each guess sharpens the image until the big reveal!<br>
-        (On mobile, you may need to scroll down.)</p>
+        <p class="subtitle">
+        The bird-themed variation of Wordle
+        </p>
 
-        <p>You can guess any valid English word, but the final answer will always be a bird. 🐦 </p>
+        <p class="instruction">
+        A blurry bird clue is located below the keyboard. Each guess sharpens the image until the big reveal! <br />
+        <em>(On mobile, you may need to scroll down.)</em>
+        </p>
 
-        <p>  <strong>Easy Mode</strong> — familiar birds you’ve probably seen before<br>
-        <strong>Hard Mode</strong> — for true ornithologists and bird nerds only!</p>
-        <button class="newGameBtn easy infoScreenButton">New Game: Easy</button>
-        <button class="newGameBtn hard infoScreenButton">New Game: Hard</button>
+        <p class="instruction">
+        You can guess any valid English word, but the final answer will always be a bird.
+        </p>
+
+        <p class="instruction">
+        <em>Easy Mode</em> — familiar birds you’ve probably seen<br />
+        <em>Hard Mode</em> — for true ornithologists only!
+        </p>
+
+        <div class="buttons">
+            <button class="newGameBtn infoScreenButton easy">New Game: Easy</button>
+            <button class="newGameBtn infoScreenButton hard">New Game: Hard</button>
+        </div>
     </div>
     <div id="custom-alert"></div>
     <div id="game">
@@ -42,7 +54,6 @@
             <div id="board"></div>
             <div id="keyboard"></div>
         </div>
-        <!-- <div id="gameInfo"></div> -->
         <div id="post-game-buttons-container">
             <button id="shareBtn" style="display:none;">
                 Share

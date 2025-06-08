@@ -1,42 +1,89 @@
 /* centering */
-#gameInfo, #game, #infoScreen{
+#gameInfo, #game{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-#infoScreen p{
-  font-size: 22px;
-  font-style: italic;
-  max-width: 550px;
-}
-
-#randomBirdFact{
-  max-width: 550px;
-}
-
-#header{
+/* dark mode */
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  background-color: #0F1A24;
+  color: #F5ECD9;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* text-align: center; */
 }
 
-#header img{
+#infoScreen {
+  max-width: 450px;
+}
+
+/* Title */
+.title {
+  font-size: 50px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.title img{
   margin-left: 10px;
-  width: 22px;
-  height: 22px;
+  width: 50px;
+  height: 50px;
 }
 
-/* dark mode */
-body {
-    background-color: black;
+/* Paragraphs */
+.subtitle {
+  font-size: 22px;
+  margin-bottom: 35px;
+  text-align: center;
+  line-height: 1;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.instruction {
+  font-size: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.infoScreenButton, .postGameBtn{
+    text-align: center;
+    height: 40px;
+    width: 175px;
+    background-color: #d2b32a;
     color: white;
-    font-family: 'Franklin';
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    z-index: 10001;
+}
+
+.infoScreenButton{
+  margin-top: 9px;
 }
 
 /* board styling */
 #board {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,12 +168,6 @@ body {
     background-color: #3a3a3c;
 }
 
-#gameInfo{
-    margin-top: 20px;
-    font-size: 40px;
-    color: green;
-}
-
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-5px); }
@@ -156,23 +197,6 @@ body {
     font-size: 16px;
     border: none;
     z-index: 10001;
-}
-
-.infoScreenButton, .postGameBtn{
-    text-align: center;
-    height: 40px;
-    width: 175px;
-    background-color: #b59f3b;
-    color: white;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 16px;
-    border: none;
-    z-index: 10001;
-}
-
-.infoScreenButton{
-  margin-top: 9px;
 }
 
 .postGameBtn{
@@ -244,4 +268,6 @@ html, body, #keyboard, .keyboard-row, .key{
 
 #randomBirdFact{
   margin-top: 10px;
+  margin-bottom: 20px;
+  max-width: 450px;
 }
