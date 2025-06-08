@@ -8,18 +8,30 @@
     <script type="module" src="./js/main.js"></script>
     <link rel="stylesheet" href="./styles.css"/>
     <link rel="icon" href="./imgs/favicon.ico" type="image/x-icon" />
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2WPCV615V3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-2WPCV615V3');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WPCV615V3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2WPCV615V3');
+    </script>
+</head>
+
+
+
 <body>
+
     <div id="infoScreen">
+        <!-- sky for the background -->
+        <div class="sky">
+            <div class="cloud cloud1">☁️</div>
+            <div class="cloud cloud2">☁️</div>
+            <div class="cloud cloud3">☁️</div>
+        </div>
+
         <h1 class="title">
             Birdle
             <img src="./imgs/titleBird.png" alt="bird-image">
@@ -48,7 +60,9 @@
             <button class="newGameBtn infoScreenButton hard">New Game: Hard</button>
         </div>
     </div>
+
     <div id="custom-alert"></div>
+
     <div id="game">
         <div id="board-container">
             <div id="board"></div>

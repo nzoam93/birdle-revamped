@@ -235,11 +235,11 @@ body {
     padding: 12px 24px;
     border-radius: 10px;
     font-size: 16px;
-    z-index: 9999;
+    z-index: 10002;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     pointer-events: none;
-    width: 180px;
+    width: 200px;
     text-align: center;
 }
 
@@ -270,4 +270,49 @@ html, body, #keyboard, .keyboard-row, .key{
   margin-top: 10px;
   margin-bottom: 20px;
   max-width: 450px;
+}
+
+
+/* Clouds */
+
+.sky {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.cloud {
+  position: absolute;
+  white-space: nowrap;
+  animation: moveClouds linear infinite;
+  font-size: 100px;
+}
+
+.cloud1 {
+  top: 15vh;
+  left: 0%;
+  animation-duration: 50s;
+}
+
+.cloud2 {
+  top: 30vh;
+  left: -25%;
+  animation-duration: 40s;
+}
+
+.cloud3 {
+  top: 45vh;
+  left: 20%;
+  animation-duration: 30s;
+}
+
+@keyframes moveClouds {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120vw);
+  }
 }
