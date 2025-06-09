@@ -30,56 +30,54 @@
             <div class="cloud cloud1">☁️</div>
             <div class="cloud cloud2">☁️</div>
             <div class="cloud cloud3">☁️</div>
+            <div class="cloud cloud4">☁️</div>
             <div class="bird bird1"><img src="./imgs/bird-trial-3.png" alt="bird-image"></div>
             <div class="bird bird2"><img src="./imgs/bird-trial-3.png" alt="bird-image"></div>
+            <div class="bird bird3"><img src="./imgs/bird-trial-3.png" alt="bird-image"></div>
         </div>
 
-        <h1 class="title">
-            Birdle
-            <img src="./imgs/titleBird.png" alt="bird-image">
-        </h1>
+        <div id="beginningInfoScreen">
+            <h1 class="title">
+                Birdle
+                <img src="./imgs/titleBird.png" alt="bird-image">
+            </h1>
 
-        <p class="subtitle">
-        The bird-themed variation of Wordle
-        </p>
+            <p class="subtitle"> The bird-themed variation of Wordle</p>
 
-        <p class="instruction">
-        A blurry bird clue is located below the keyboard. Each guess sharpens the image until the big reveal! <br />
-        <em>(On mobile, you may need to scroll down.)</em>
-        </p>
+            <p class="instruction">
+                A blurry bird clue is located below the keyboard. Each guess sharpens the image until the big reveal! <br />
+                <em>(On mobile, you may need to scroll down.)</em>
+            </p>
 
-        <p class="instruction">
-        You can guess any valid English word, but the final answer will always be a bird.
-        </p>
+            <p class="instruction"> You can guess any valid English word, but the final answer will always be a bird.</p>
 
-        <p class="instruction">
-        <em>Easy Mode</em> — familiar birds<br />
-        <em>Hard Mode</em> — for true ornithologists
-        </p>
+            <div class="buttons">
+                <button class="newGameBtn infoScreenButton easy">Start Game</button>
+            </div>
+        </div>
 
-        <div class="buttons">
-            <button class="newGameBtn infoScreenButton easy">New Game</button>
+        <div id="alreadyPlayedMessage" style="display: none;">
+            <h2>You've already played today!</h2>
+            <div id="prev-data"></div>
+            <h4 id="countdownTimer">
+                Next birdle in: <span id="timer"></span>
+            </h4>
+            <!-- <p>Come back tomorrow for a new daily Birdle.</p> -->
+            <p style="text-align: left;">Can't wait? Continue play in practice mode!</p>
+            <p style="text-align: left;">
+                <em>Easy Mode</em> — familiar birds<br />
+                <em>Hard Mode</em> — for true ornithologists
+            </p>
+            <div class="buttons">
+                <button class="newGameBtn infoScreenButton practice easy">Practice: Easy</button>
+                <button class="newGameBtn infoScreenButton practice hard">Practice: Hard</button>
+            </div>
         </div>
     </div>
 
     <div id="custom-alert"></div>
 
-    <div id="alreadyPlayedMessage" style="display: none;">
-        <h2>You've already played today!</h2>
-         <h4 id="countdownTimer">
-            Next birdle in: <span id="timer"></span>
-         </h4>
-        <!-- <p>Come back tomorrow for a new daily Birdle.</p> -->
-        <p style="text-align: left;">Can't wait? Continue play in practice mode!</p>
-        <p style="text-align: left;">
-            <em>Easy Mode</em> — familiar birds<br />
-            <em>Hard Mode</em> — for true ornithologists
-        </p>
-        <div class="buttons">
-            <button class="newGameBtn infoScreenButton easy">Practice: Easy</button>
-            <button class="newGameBtn infoScreenButton hard">Practice: Hard</button>
-        </div>
-    </div>
+
 
     <div id="game">
         <div id="board-container">

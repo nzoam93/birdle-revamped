@@ -1,4 +1,4 @@
-import { guessResults } from './gameState.js';
+import { guessResults, gameWon } from './gameState.js';
 
 export const randomBirdFacts = [
   "The fastest bird is the peregrine falcon, which can dive at speeds over 240 mph (386 km/h).",
@@ -52,7 +52,13 @@ export const randomBirdFacts = [
 ];
 
 export function generateShareText(guessesUsed) {
-    let result = `I got today's Birdle in ${guessesUsed} ${guessesUsed > 1 ? 'tries' : 'try'}!\n\n`;
+    let result;
+    if (gameWon){
+      result = `I got today's Birdle in ${guessesUsed} ${guessesUsed > 1 ? 'tries' : 'try'}!\n\n`;
+    }
+    else {
+      result = `Today's Birdle stumped me!\n\n`;
+    }
     guessResults.forEach(row => {
         result += row.join('') + '\n';
     });

@@ -70,8 +70,8 @@ body {
 
 .infoScreenButton, .postGameBtn{
     text-align: center;
-    height: 40px;
-    width: 175px;
+    height: 35px;
+    width: 160px;
     background-color: #d2b32a;
     color: white;
     border-radius: 50px;
@@ -150,14 +150,9 @@ body {
   min-width:  33px;
   border-radius: 5px;
   background-color: #818384;
-  cursor: pointer;
   user-select: none;
   border: none;
   text-align: center;
-}
-
-.key:hover {
-  background-color: darkgrey;
 }
 
 .key.correct {
@@ -192,8 +187,8 @@ body {
 #shareBtn{
     position: fixed;
     top: 22vh;
-    height: 40px;
-    width: 175px;
+    height: 35px;
+    width: 160px;
     background-color: #58a351;
     color: white;
     border-radius: 50px;
@@ -295,20 +290,26 @@ html, body, #keyboard, .keyboard-row, .key{
 }
 
 .cloud1 {
-  top: 15vh;
+  top: 20vh;
   left: 5%;
   animation-duration: 50s;
 }
 
 .cloud2 {
-  top: 30vh;
+  top: 35vh;
   left: -25%;
   animation-duration: 40s;
 }
 
 .cloud3 {
-  top: 45vh;
+  top: 50vh;
   left: 30%;
+  animation-duration: 30s;
+}
+
+.cloud4 {
+  top: 55vh;
+  left: 10%;
   animation-duration: 30s;
 }
 
@@ -324,14 +325,20 @@ html, body, #keyboard, .keyboard-row, .key{
 }
 
 .bird1 {
-  top: 30vh;
+  top: 35vh;
   left: 5%;
   animation-duration: 50s;
 }
 
 .bird2 {
-  top: 46vh;
+  top: 50vh;
   left: -14%;
+  animation-duration: 40s;
+}
+
+.bird3 {
+  top: 25vh;
+  left: 25%;
   animation-duration: 40s;
 }
 
@@ -340,7 +347,7 @@ html, body, #keyboard, .keyboard-row, .key{
     transform: translateX(0);
   }
   to {
-    transform: translateX(100vw);
+    transform: translateX(70vw);
   }
 }
 
@@ -349,4 +356,8 @@ html, body, #keyboard, .keyboard-row, .key{
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+#alreadyPlayedMessage h2 {
+  margin-top: 0px;
 }

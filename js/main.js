@@ -25,13 +25,14 @@ newGameButtons.forEach(button => {
   button.addEventListener("click", () => {
     // Determine difficulty by checking the classList
     let difficulty = button.classList.contains("easy") ? "easy" : "hard";
-    newGame(difficulty);
+    let practice = button.classList.contains("practice") ? true : false
+    newGame(difficulty, practice);
   });
 });
 
 // bird options
 export const birdWordsEasy = [
-  "Booby","Crane","Eagle","Egret","Finch","Goose","Heron","Quail","Raven","Robin","Stork","Swift", "Scaup", "Ducks"
+  "Booby","Crane","Eagle","Egret","Finch","Goose","Heron","Quail","Raven","Robin","Stork", "Scaup", "Ducks"
 ];
 
 export const birdWordsHard = [
@@ -80,28 +81,31 @@ function resetGameState(){
   document.getElementById("board-container").classList.remove("blur");
 }
 
-function chooseWord(difficulty){
-  let todaysWord = getTodaysWord(difficulty);
-  setSecretWord(todaysWord.toUpperCase());
-
+function chooseWord(difficulty, practice=false){
+  if (!practice){
+    let todaysWord = getTodaysWord(difficulty);
+    setSecretWord(todaysWord.toUpperCase());
+  }
+  else {
   // choose a random word
-    // if (difficulty === "easy"){
-    //   let randomWord = birdWordsEasy[Math.floor(Math.random() * birdWordsEasy.length)];
-    //   setSecretWord(randomWord.toUpperCase())
-    // }
-    // else {
-    //   let randomWord = birdWordsHard[Math.floor(Math.random() * birdWordsHard.length)];
-    //   setSecretWord(randomWord.toUpperCase())
-    // }
+    if (difficulty === "easy"){
+      let randomWord = birdWordsEasy[Math.floor(Math.random() * birdWordsEasy.length)];
+      setSecretWord(randomWord.toUpperCase())
+    }
+    else {
+      let randomWord = birdWordsHard[Math.floor(Math.random() * birdWordsHard.length)];
+      setSecretWord(randomWord.toUpperCase())
+    }
+  }
 }
 
 // Game Logic
-function newGame(difficulty){
+function newGame(difficulty, practice){
   // reset to new game
   resetGameState()
 
   // choose a word
-  chooseWord(difficulty)
+  chooseWord(difficulty, practice)
 
   fetch('./word-bank.txt')
     .then(res => res.text())
@@ -131,14 +135,13 @@ function newGame(difficulty){
   });
 }
 
-
 //Once a day features
 window.addEventListener("DOMContentLoaded", () => {
   if (hasPlayedToday()) {
-    // Game was already played today — show message or block game
-    document.getElementById("infoScreen").style.display = "none";
-    // document.getElementById("game").style.display = "block"
+    // Game was already played today — show message
+    document.getElementById("beginningInfoScreen").style.display = "none";
     document.getElementById("alreadyPlayedMessage").style.display = "block";
+    displayPrevResults();
   } else {
     // Game can be played — show game
     document.getElementById("game").style.display = "block";

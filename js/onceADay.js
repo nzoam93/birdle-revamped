@@ -43,3 +43,5 @@ function startTimer() {
 window.addEventListener("pagehide", () => {
     clearInterval(timerInterval);
 });
+
+

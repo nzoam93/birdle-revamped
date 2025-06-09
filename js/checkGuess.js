@@ -1,4 +1,4 @@
-import {currentGuess, secretWord, wordLength, numberOfGuesses, dictionary, setCurrentGuess, setGameOver, setNumberOfGuesses, guessResults, gameOver } from "./gameState.js"
+import {currentGuess, secretWord, wordLength, numberOfGuesses, dictionary, setCurrentGuess, setGameOver, setNumberOfGuesses, guessResults, gameOver, setGameWon } from "./gameState.js"
 import { shakeRow, showAlert } from "./utils.js"
 import { fetchBirdFact } from "./birdFetch.js";
 
@@ -13,13 +13,13 @@ function endGameActions(){
     document.getElementById("randomBirdFact").style.display = "block";
     fetchBirdFact(secretWord).then(birdFact => {
         document.getElementById("randomBirdFact").innerHTML = `Did you know? ${birdFact}`;
-    })
+    });
 }
 
 export function checkGuess(){
     let emojiRow = []
     let guess = currentGuess.join("")
-    const letterCount = {}
+    const letterCount = {};
 
      // Check if guess is in dictionary of words
     if (!dictionary.includes(guess)) {
@@ -91,19 +91,21 @@ export function checkGuess(){
     //check to see if the word was right
     setNumberOfGuesses(numberOfGuesses + 1);
     if (guess === secretWord) {
-        showAlert("Congrats, you got it right!", 2000, 15)
+        showAlert("Congrats, you got it right!", 2000, 15);
+        setGameWon(true);
         endGameActions();
     }
     else {
         if (numberOfGuesses === 6) {
-            showAlert(`The secret word was ${secretWord}`, 2000, 15)
+            showAlert(`The secret word was ${secretWord}`, 2000, 15);
+            setGameWon(false);
             endGameActions();
         }
     }
 
     //set the bird blurriness
     if (!gameOver){
-        let blurFactor = 20 - numberOfGuesses * 6;
+        let blurFactor = 20 - numberOfGuesses * 4;
         let blurLevel = "blur("+blurFactor+"px)";
         document.getElementById("bird").style.filter = blurLevel;
     }
