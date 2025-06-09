@@ -58,12 +58,28 @@
         </p>
 
         <div class="buttons">
-            <button class="newGameBtn infoScreenButton easy">New Game: Easy</button>
-            <button class="newGameBtn infoScreenButton hard">New Game: Hard</button>
+            <button class="newGameBtn infoScreenButton easy">New Game</button>
         </div>
     </div>
 
     <div id="custom-alert"></div>
+
+    <div id="alreadyPlayedMessage" style="display: none;">
+        <h2>You've already played today!</h2>
+         <h4 id="countdownTimer">
+            Next birdle in: <span id="timer"></span>
+         </h4>
+        <!-- <p>Come back tomorrow for a new daily Birdle.</p> -->
+        <p style="text-align: left;">Can't wait? Continue play in practice mode!</p>
+        <p style="text-align: left;">
+            <em>Easy Mode</em> — familiar birds<br />
+            <em>Hard Mode</em> — for true ornithologists
+        </p>
+        <div class="buttons">
+            <button class="newGameBtn infoScreenButton easy">Practice: Easy</button>
+            <button class="newGameBtn infoScreenButton hard">Practice: Hard</button>
+        </div>
+    </div>
 
     <div id="game">
         <div id="board-container">
@@ -75,8 +91,8 @@
                 Share
                 <img src="./imgs/share-icon.png" alt="Share">
             </button>
-            <button class="newGameBtn easy postGameBtn" style="display: none;">New Game: Easy</button>
-            <button class="newGameBtn hard postGameBtn" style="display: none;">New Game: Hard</button>
+            <button class="newGameBtn easy postGameBtn" style="display: none;">Practice: Easy</button>
+            <button class="newGameBtn hard postGameBtn" style="display: none;">Practice: Hard</button>
         </div>
         <img id ="bird" style="display: none;">
         <div id="randomBirdFact" style="display: none;"></div>
