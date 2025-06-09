@@ -358,6 +358,6 @@ html, body, #keyboard, .keyboard-row, .key{
   text-align: center;
 }
 
-#alreadyPlayedMessage h2 {
+#alreadyPlayedMessage h1 {
   margin-top: 0px;
 }
