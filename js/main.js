@@ -31,12 +31,16 @@ newGameButtons.forEach(button => {
 });
 
 // bird options
+
+
 export const birdWordsEasy = [
-  "Booby","Crane","Eagle","Egret","Finch","Goose","Heron","Quail","Raven","Robin","Stork", "Scaup", "Ducks"
+  "Booby", "Crane","Eagle", "Egret", "Finch", "Goose", "Heron", "Quail", "Raven", "Robin", "Stork", "Scaup", "Ducks",
+  "Condor", "Falcon", "Magpie", "Osprey", "Parrot", "Pigeon", "Puffin"
 ];
 
 export const birdWordsHard = [
-  "Asity","Batis","Besra","Carib","Crake","Diver","Fairy","Galah","Grebe","Hobby","Maleo","Mango","Mesia","Miner","Minla","Monal","Munia","Noddy","Ouzel","Potoo","Prion","Sibia","Stint","Sylph","Topaz","Vanga","Veery"
+  "Asity", "Batis", "Besra", "Carib", "Crake", "Fairy", "Galah", "Grebe", "Hobby", "Maleo", "Mango", "Mesia", "Miner", "Minla", "Monal", "Munia", "Noddy", "Ouzel", "Potoo", "Prion","Sibia","Stint","Sylph","Topaz","Vanga","Veery",
+  "Avocet", "Bulbul", "Curlew", "Gannet", "Godwit", "Jacana", "Plover", "Towhee"
 ]
 
 function getTodaysWord(difficulty) {
@@ -64,7 +68,6 @@ function resetGameState(){
   setGameOver(false);
   setGuessResults([]);
   markGamePlayedToday();
-
 
   //reset board and keyboard
   const board = document.getElementById("board");
@@ -97,7 +100,47 @@ function chooseWord(difficulty, practice=false){
       setSecretWord(randomWord.toUpperCase())
     }
   }
+  return secretWord;
 }
+
+function loadDictionaryAndInitializeBoard(wordFilePath) {
+  fetch(wordFilePath)
+    .then(res => res.text())
+    .then(text => {
+      const fileWords = text.split('\n').map(word => word.trim().toUpperCase());
+      const allBirdWords = [...birdWordsEasy, ...birdWordsHard].map(word => word.toUpperCase());
+      const dict = [...new Set([...fileWords, ...allBirdWords])];
+      setDictionary(dict);
+
+      // Create board and keyboard
+      createBoard(numRows, wordLength);
+      createKeyboard();
+
+      // Make board dimensions dynamic
+      const board = document.getElementById("board");
+      board.style.setProperty("--numRows", numRows);
+      board.style.setProperty("--wordLength", wordLength);
+
+      // alter sizes of squares based on word length
+      if (secretWord.length === 5){
+        let squares = document.querySelectorAll('.square');
+        squares.forEach(square => {
+          square.style.height = '60px';
+          square.style.width = '60px';
+          square.style.fontSize = '32px';
+        });
+      }
+      if (secretWord.length === 6){
+        let squares = document.querySelectorAll('.square');
+        squares.forEach(square => {
+          square.style.height = '50px';
+          square.style.width = '50px';
+          square.style.fontSize = '28px';
+        });
+      }
+    });
+}
+
 
 // Game Logic
 function newGame(difficulty, practice){
@@ -105,26 +148,11 @@ function newGame(difficulty, practice){
   resetGameState()
 
   // choose a word
-  chooseWord(difficulty, practice)
+  let chosenBird = chooseWord(difficulty, practice)
 
-  fetch('./word-bank.txt')
-    .then(res => res.text())
-    .then(text => {
-      // set the dictionary of words to the allowed list of words
-      const fileWords = text.split('\n').map(word => word.trim().toUpperCase());
-      const allBirdWords = [...birdWordsEasy, ...birdWordsHard].map(word => word.toUpperCase())
-      const dict = [...new Set([...fileWords, ...allBirdWords])]
-      setDictionary(dict)
-
-      //create the board and keyboard
-      createBoard(numRows, wordLength);
-      createKeyboard();
-
-      //allow the board to be dynamic to not just 6x5
-      const board = document.getElementById("board");
-      board.style.setProperty("--numRows", numRows);
-      board.style.setProperty("--wordLength", wordLength);
-    });
+  // load dictionary and initalize board
+  const wordFilePath = chosenBird.length === 5 ? './word-bank.txt' : './6_letter_words.txt';
+  loadDictionaryAndInitializeBoard(wordFilePath);
 
   //birdle blur
   document.getElementById("bird").style.filter = "blur(20px)";
@@ -141,7 +169,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // Game was already played today — show message
     document.getElementById("beginningInfoScreen").style.display = "none";
     document.getElementById("alreadyPlayedMessage").style.display = "block";
-    displayPrevResults();
   } else {
     // Game can be played — show game
     document.getElementById("game").style.display = "block";
