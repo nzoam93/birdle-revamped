@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+#game img{
+  justify-self: center;
+}
+
 /* dark mode */
 body {
   font-family: "Georgia", "Times New Roman", serif;
@@ -268,9 +272,9 @@ html, body, #keyboard, .keyboard-row, .key{
 #randomBirdFact{
   margin-top: 10px;
   margin-bottom: 20px;
-  max-width: 450px;
+  max-width: 400px;
+  text-align: justify;
 }
-
 
 /* Clouds */
 

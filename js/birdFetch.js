@@ -35,7 +35,7 @@ let birdAudio = null;
 
 export async function preloadBirdSound(birdName) {
   try {
-    await fetch(`https://node-proxy-for-birdle.onrender.com/bird-sound?bird=${birdName}`);
+    const res = await fetch(`https://node-proxy-for-birdle.onrender.com/bird-sound?bird=${birdName}`);
 
     const data = await res.json();
     if (!data || !data.url) {
@@ -44,9 +44,10 @@ export async function preloadBirdSound(birdName) {
 
     birdAudio = new Audio(data.url);
     birdAudio.load();
+    console.log('audio loaded')
   } catch (err) {
-    console.warn(`Preloading failed for "${birdName}":`, err.message);
-    // Optionally fall back to a default chirp:
+    console.warn(`Preloading of audio failed for "${birdName}":`, err.message);
+    // Fall back to a default chirp:
     birdAudio = new Audio("../audio/default-sound.m4a");
     birdAudio.load();
   }
@@ -55,11 +56,11 @@ export async function preloadBirdSound(birdName) {
 export function playPreloadedBirdSound() {
   console.log(birdAudio)
   if (birdAudio) {
-    birdAudio.currentTime = 2; //starts it 2 seconds in
+    birdAudio.currentTime = 0.2; //starts it 0.2 seconds in
     birdAudio.play();
     setTimeout(() => {
       birdAudio.pause();
-      birdAudio.currentTime = 2;
-    }, 4000);
+      birdAudio.currentTime = 0.2;
+    }, 3000);
   }
 }
