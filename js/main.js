@@ -5,7 +5,7 @@ import { handleKey } from "./handleKey.js";
 import {numRows, wordLength, setSecretWord, setDictionary, numberOfGuesses, secretWord, setCurrentGuess, setNumberOfGuesses, setGameOver, setGuessResults } from "./gameState.js";
 import { generateShareText } from "./generateShareText.js";
 import { showAlert } from "./utils.js";
-import { fetchBirdImage } from "./birdFetch.js";
+import { fetchBirdImage, preloadBirdSound } from "./birdFetch.js";
 import { hasPlayedToday, markGamePlayedToday, timerInterval } from "./onceADay.js";
 
 // event listener - keydown
@@ -32,9 +32,8 @@ newGameButtons.forEach(button => {
 
 // bird options
 
-
 export const birdWordsEasy = [
-  "Booby", "Crane","Eagle", "Egret", "Finch", "Goose", "Heron", "Quail", "Raven", "Robin", "Stork", "Scaup", "Ducks",
+  "Booby", "Crane","Eagle", "Egret", "Finch", "Goose", "Heron", "Quail", "Raven", "Robin", "Stork", "Scaup",
   "Condor", "Falcon", "Magpie", "Osprey", "Parrot", "Pigeon", "Puffin"
 ];
 
@@ -149,6 +148,9 @@ function newGame(difficulty, practice){
 
   // choose a word
   let chosenBird = chooseWord(difficulty, practice)
+
+  // bird sounds (load sound to use later asyncrhonously)
+  preloadBirdSound(chosenBird);
 
   // load dictionary and initalize board
   const wordFilePath = chosenBird.length === 5 ? './word-bank.txt' : './6_letter_words.txt';

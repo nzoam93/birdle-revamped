@@ -29,26 +29,37 @@ export async function fetchBirdFact(birdName){
   return birdFact;
 }
 
-// async function isBirdReal(birdName) {
-//   const response = await fetch(`https://api.inaturalist.org/v1/search?q=${birdName}&sources=taxa`);
-//   const data = await response.json();
-//   const bird = data.results?.find(result => result.record?.default_photo);
-//   return bird
-// }
 
-// async function checkBirdImages(completeBirdWords) {
-//   const missingImages = [];
+// bird sounds
+let birdAudio = null;
 
-//   for (const bird of completeBirdWords) {
-//     const imageUrl = await isBirdReal(bird);
-//     if (!imageUrl) {
-//       console.warn(`No image found for: ${bird}`);
-//       missingImages.push(bird);
-//     }
-//   }
+export async function preloadBirdSound(birdName) {
+  try {
+    await fetch(`https://node-proxy-for-birdle.onrender.com/bird-sound?bird=${birdName}`);
 
-//   console.log("Birds with missing images:", missingImages);
-//   return missingImages;
-// }
+    const data = await res.json();
+    if (!data || !data.url) {
+      throw new Error('Invalid audio response');
+    }
 
-// checkBirdImages(birdWords)
+    birdAudio = new Audio(data.url);
+    birdAudio.load();
+  } catch (err) {
+    console.warn(`Preloading failed for "${birdName}":`, err.message);
+    // Optionally fall back to a default chirp:
+    birdAudio = new Audio("../audio/default-sound.m4a");
+    birdAudio.load();
+  }
+}
+
+export function playPreloadedBirdSound() {
+  console.log(birdAudio)
+  if (birdAudio) {
+    birdAudio.currentTime = 2; //starts it 2 seconds in
+    birdAudio.play();
+    setTimeout(() => {
+      birdAudio.pause();
+      birdAudio.currentTime = 2;
+    }, 4000);
+  }
+}
