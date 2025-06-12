@@ -48,7 +48,7 @@ export async function preloadBirdSound(birdName) {
   } catch (err) {
     console.warn(`Preloading of audio failed for "${birdName}":`, err.message);
     // Fall back to a default chirp:
-    birdAudio = new Audio("../audio/default-sound.m4a");
+    birdAudio = new Audio("./audio/default-sound.m4a");
     birdAudio.load();
   }
 }
