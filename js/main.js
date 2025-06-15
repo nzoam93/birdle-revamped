@@ -5,7 +5,7 @@ import { handleKey } from "./handleKey.js";
 import {numRows, wordLength, setSecretWord, setDictionary, numberOfGuesses, secretWord, setCurrentGuess, setNumberOfGuesses, setGameOver, setGuessResults } from "./gameState.js";
 import { generateShareText } from "./generateShareText.js";
 import { showAlert } from "./utils.js";
-import { fetchBirdImage, preloadBirdSound } from "./birdFetch.js";
+import { fetchBirdImage, preloadBirdSound, playPreloadedBirdSound } from "./birdFetch.js";
 import { hasPlayedToday, markGamePlayedToday, timerInterval } from "./onceADay.js";
 
 // event listener - keydown
@@ -30,6 +30,13 @@ newGameButtons.forEach(button => {
   });
 });
 
+// event listener - play bird call
+const birdCallButton = document.getElementById("playBirdSound");
+birdCallButton.addEventListener("click", () => {
+  //bird sounds
+    playPreloadedBirdSound(secretWord);
+})
+
 // bird options
 
 export const birdWordsEasy = [
@@ -42,6 +49,19 @@ export const birdWordsHard = [
   "Avocet", "Bulbul", "Curlew", "Gannet", "Godwit", "Jacana", "Plover", "Towhee"
 ]
 
+//Once a day features
+window.addEventListener("DOMContentLoaded", () => {
+  if (hasPlayedToday()) {
+    // Game was already played today — show message
+    document.getElementById("beginningInfoScreen").style.display = "none";
+    document.getElementById("alreadyPlayedMessage").style.display = "block";
+  } else {
+    // Game can be played — show game
+    document.getElementById("game").style.display = "block";
+    document.getElementById("alreadyPlayedMessage").style.display = "none";
+  }
+});
+
 function getTodaysWord(difficulty) {
   const now = new Date();
   const startDate = new Date("2025-06-09");
@@ -49,6 +69,25 @@ function getTodaysWord(difficulty) {
   const arrayToUse = difficulty === 'easy' ? birdWordsEasy : birdWordsHard;
   const index = daysSinceStart % arrayToUse.length;
   return arrayToUse[index];
+}
+
+function chooseWord(difficulty, practice=false){
+  if (!practice){
+    let todaysWord = getTodaysWord(difficulty);
+    setSecretWord(todaysWord.toUpperCase());
+  }
+  else {
+  // choose a random word
+    if (difficulty === "easy"){
+      let randomWord = birdWordsEasy[Math.floor(Math.random() * birdWordsEasy.length)];
+      setSecretWord(randomWord.toUpperCase())
+    }
+    else {
+      let randomWord = birdWordsHard[Math.floor(Math.random() * birdWordsHard.length)];
+      setSecretWord(randomWord.toUpperCase())
+    }
+  }
+  return secretWord;
 }
 
 function resetGameState(){
@@ -79,28 +118,16 @@ function resetGameState(){
   document.querySelectorAll(".newGameBtn").forEach(button => {
     button.style.display = "none";
   });
+
+  document.getElementById("playBirdSound").style.display = "none";
+
   //remove board blur
   document.getElementById("board-container").classList.remove("blur");
+
+
 }
 
-function chooseWord(difficulty, practice=false){
-  if (!practice){
-    let todaysWord = getTodaysWord(difficulty);
-    setSecretWord(todaysWord.toUpperCase());
-  }
-  else {
-  // choose a random word
-    if (difficulty === "easy"){
-      let randomWord = birdWordsEasy[Math.floor(Math.random() * birdWordsEasy.length)];
-      setSecretWord(randomWord.toUpperCase())
-    }
-    else {
-      let randomWord = birdWordsHard[Math.floor(Math.random() * birdWordsHard.length)];
-      setSecretWord(randomWord.toUpperCase())
-    }
-  }
-  return secretWord;
-}
+
 
 function loadDictionaryAndInitializeBoard(wordFilePath) {
   fetch(wordFilePath)
@@ -121,15 +148,15 @@ function loadDictionaryAndInitializeBoard(wordFilePath) {
       board.style.setProperty("--wordLength", wordLength);
 
       // alter sizes of squares based on word length
-      if (secretWord.length === 5){
-        let squares = document.querySelectorAll('.square');
-        squares.forEach(square => {
-          square.style.height = '60px';
-          square.style.width = '60px';
-          square.style.fontSize = '32px';
-        });
-      }
-      if (secretWord.length === 6){
+      // if (secretWord.length === 5){
+      //   let squares = document.querySelectorAll('.square');
+      //   squares.forEach(square => {
+      //     square.style.height = '60px';
+      //     square.style.width = '60px';
+      //     square.style.fontSize = '32px';
+      //   });
+      // }
+      if (secretWord.length === 6 || secretWord.length === 5){
         let squares = document.querySelectorAll('.square');
         squares.forEach(square => {
           square.style.height = '50px';
@@ -164,16 +191,3 @@ function newGame(difficulty, practice){
       }
   });
 }
-
-//Once a day features
-window.addEventListener("DOMContentLoaded", () => {
-  if (hasPlayedToday()) {
-    // Game was already played today — show message
-    document.getElementById("beginningInfoScreen").style.display = "none";
-    document.getElementById("alreadyPlayedMessage").style.display = "block";
-  } else {
-    // Game can be played — show game
-    document.getElementById("game").style.display = "block";
-    document.getElementById("alreadyPlayedMessage").style.display = "none";
-  }
-});

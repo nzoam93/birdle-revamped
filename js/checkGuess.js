@@ -1,6 +1,6 @@
 import {currentGuess, secretWord, wordLength, numberOfGuesses, dictionary, setCurrentGuess, setGameOver, setNumberOfGuesses, guessResults, gameOver, setGameWon } from "./gameState.js"
 import { shakeRow, showAlert } from "./utils.js"
-import { fetchBirdFact, playPreloadedBirdSound } from "./birdFetch.js";
+import { fetchBirdFact } from "./birdFetch.js";
 
 //actions at the end of the game (regardless of win or lose)
 function endGameActions(){
@@ -14,9 +14,6 @@ function endGameActions(){
     fetchBirdFact(secretWord).then(birdFact => {
         document.getElementById("randomBirdFact").innerHTML = `Did you know? ${birdFact}`;
     });
-
-    //bird sounds
-    playPreloadedBirdSound(secretWord);
 }
 
 export function checkGuess(){

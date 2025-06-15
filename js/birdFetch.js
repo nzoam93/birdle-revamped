@@ -44,7 +44,9 @@ export async function preloadBirdSound(birdName) {
 
     birdAudio = new Audio(data.url);
     birdAudio.load();
-    console.log('audio loaded')
+
+    //unhide the button once loaded
+    document.getElementById("playBirdSound").style.display = "block";
   } catch (err) {
     console.warn(`Preloading of audio failed for "${birdName}":`, err.message);
     // Fall back to a default chirp:

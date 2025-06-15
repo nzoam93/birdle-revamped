@@ -365,3 +365,19 @@ html, body, #keyboard, .keyboard-row, .key{
 #alreadyPlayedMessage h1 {
   margin-top: 0px;
 }
+
+/*bird sound*/
+#playBirdSound {
+  background-color: #1E2A38;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+
+#playBirdSound:hover {
+  background-color: #2C3E50;
+}
