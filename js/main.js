@@ -119,7 +119,7 @@ function resetGameState(){
     button.style.display = "none";
   });
 
-  // document.getElementById("playBirdSound").style.display = "none";
+  document.getElementById("playBirdSound").classList.add("visible");
 
   //remove board blur
   document.getElementById("board-container").classList.remove("blur");

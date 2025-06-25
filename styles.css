@@ -10,6 +10,11 @@
   justify-self: center;
 }
 
+html, body {
+  overscroll-behavior-y: contain; /* prevents pull-to-refresh */
+  overscroll-behavior-x: none;
+}
+
 /* dark mode */
 body {
   font-family: "Georgia", "Times New Roman", serif;
@@ -19,6 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   /* text-align: center; */
 }
 
@@ -394,6 +400,14 @@ html, body, #keyboard, .keyboard-row, .key{
   cursor: not-allowed;
   transition: background-color 0.3s, color 0.3s;
   margin-top: 20px;
+  opacity: 0;
+  visibility: hidden;
+  /* added the opacity and visibility so it could remain in the DOM and have the transition effects */
+}
+
+#playBirdSound.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 #playBirdSound .label {
