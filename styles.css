@@ -10,7 +10,7 @@
   justify-self: center;
 }
 
-html, body {
+#app{
   overscroll-behavior-y: contain; /* prevents pull-to-refresh */
   overscroll-behavior-x: none;
 }
