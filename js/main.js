@@ -148,15 +148,15 @@ function loadDictionaryAndInitializeBoard(wordFilePath) {
       board.style.setProperty("--wordLength", wordLength);
 
       // alter sizes of squares based on word length
-      // if (secretWord.length === 5){
-      //   let squares = document.querySelectorAll('.square');
-      //   squares.forEach(square => {
-      //     square.style.height = '60px';
-      //     square.style.width = '60px';
-      //     square.style.fontSize = '32px';
-      //   });
-      // }
-      if (secretWord.length === 6 || secretWord.length === 5){
+      if (secretWord.length === 5){
+        let squares = document.querySelectorAll('.square');
+        squares.forEach(square => {
+          square.style.height = '60px';
+          square.style.width = '60px';
+          square.style.fontSize = '32px';
+        });
+      }
+      if (secretWord.length === 6){
         let squares = document.querySelectorAll('.square');
         squares.forEach(square => {
           square.style.height = '50px';

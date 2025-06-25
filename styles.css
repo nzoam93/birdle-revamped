@@ -19,6 +19,8 @@
   -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
   overscroll-behavior: contain; /* prevent scroll chaining and overscroll */
   touch-action: pan-y; /* enable vertical pan */
+  display: flex;
+  justify-content: center;
 }
 
 html, body {
@@ -127,7 +129,7 @@ body {
     color: white;
     width: 60px;
     height: 60px;
-    border: 1px solid #3a3a3c;
+    border: 1px solid #6e6e70;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,6 +206,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #4caf50;
+    border: 1px solid red;
 }
 
 #shareBtn{
