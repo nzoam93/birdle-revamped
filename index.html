@@ -90,7 +90,11 @@
             <button class="newGameBtn hard practice postGameBtn" style="display: none;">Practice: Hard</button>
         </div>
         <img id ="bird" style="display: none;">
-        <button id="playBirdSound" style="display: none;">Play Bird Call 🔊</button>
+        <button id="playBirdSound" disabled>
+            <div class="progress-bar"></div>
+            <span class="label">Loading Bird Call</span>
+        </button>
+        <!-- <button id="playBirdSound" style="display: none;">Play Bird Call 🔊</button> -->
         <div id="randomBirdFact" style="display: none;"></div>
     </div>
   </div>

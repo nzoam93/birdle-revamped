@@ -5,7 +5,7 @@ import { handleKey } from "./handleKey.js";
 import {numRows, wordLength, setSecretWord, setDictionary, numberOfGuesses, secretWord, setCurrentGuess, setNumberOfGuesses, setGameOver, setGuessResults } from "./gameState.js";
 import { generateShareText } from "./generateShareText.js";
 import { showAlert } from "./utils.js";
-import { fetchBirdImage, preloadBirdSound, playPreloadedBirdSound } from "./birdFetch.js";
+import { fetchBirdImage, preloadBirdSound } from "./birdFetch.js";
 import { hasPlayedToday, markGamePlayedToday, timerInterval } from "./onceADay.js";
 
 // event listener - keydown
@@ -31,11 +31,11 @@ newGameButtons.forEach(button => {
 });
 
 // event listener - play bird call
-const birdCallButton = document.getElementById("playBirdSound");
-birdCallButton.addEventListener("click", () => {
-  //bird sounds
-    playPreloadedBirdSound(secretWord);
-})
+// const birdCallButton = document.getElementById("playBirdSound");
+// birdCallButton.addEventListener("click", () => {
+//   //bird sounds
+//     playPreloadedBirdSound(secretWord);
+// })
 
 // bird options
 
@@ -119,7 +119,7 @@ function resetGameState(){
     button.style.display = "none";
   });
 
-  document.getElementById("playBirdSound").style.display = "none";
+  // document.getElementById("playBirdSound").style.display = "none";
 
   //remove board blur
   document.getElementById("board-container").classList.remove("blur");

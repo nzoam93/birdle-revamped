@@ -31,38 +31,83 @@ export async function fetchBirdFact(birdName){
 
 
 // bird sounds
+// let birdAudio = null;
+
+// export async function preloadBirdSound(birdName) {
+//   try {
+//     const res = await fetch(`https://node-proxy-for-birdle.onrender.com/bird-sound?bird=${birdName}`);
+
+//     const data = await res.json();
+//     if (!data || !data.url) {
+//       throw new Error('Invalid audio response');
+//     }
+
+//     birdAudio = new Audio(data.url);
+//     birdAudio.load();
+
+//     //unhide the button once loaded
+//     document.getElementById("playBirdSound").style.display = "block";
+//   } catch (err) {
+//     console.warn(`Preloading of audio failed for "${birdName}":`, err.message);
+//     // Fall back to a default chirp:
+//     birdAudio = new Audio("./audio/default-sound.m4a");
+//     birdAudio.load();
+//   }
+// }
+
+// export function playPreloadedBirdSound() {
+//   console.log(birdAudio)
+//   if (birdAudio) {
+//     birdAudio.currentTime = 0.2; //starts it 0.2 seconds in
+//     birdAudio.play();
+//     setTimeout(() => {
+//       birdAudio.pause();
+//       birdAudio.currentTime = 0.2;
+//     }, 3000);
+//   }
+// }
+
 let birdAudio = null;
+const birdCallButton = document.getElementById("playBirdSound");
+const progressBar = birdCallButton.querySelector(".progress-bar");
 
 export async function preloadBirdSound(birdName) {
   try {
-    const res = await fetch(`https://node-proxy-for-birdle.onrender.com/bird-sound?bird=${birdName}`);
+    // Start animation immediately
+    progressBar.style.width = "100%";
 
+    const res = await fetch(`https://node-proxy-for-birdle.onrender.com/bird-sound?bird=${birdName}`);
     const data = await res.json();
-    if (!data || !data.url) {
-      throw new Error('Invalid audio response');
-    }
+
+    if (!data || !data.url) throw new Error('Invalid audio response');
 
     birdAudio = new Audio(data.url);
-    birdAudio.load();
 
-    //unhide the button once loaded
-    document.getElementById("playBirdSound").style.display = "block";
+    // Wait until the sound is ready to play
+    birdAudio.addEventListener("canplaythrough", () => {
+      birdCallButton.classList.add("ready");
+      birdCallButton.removeAttribute("disabled");
+      birdCallButton.querySelector(".label").textContent = "Play Bird Call 📢";
+    });
+
+    birdAudio.load();
   } catch (err) {
-    console.warn(`Preloading of audio failed for "${birdName}":`, err.message);
-    // Fall back to a default chirp:
+    console.warn(`Preloading failed:`, err.message);
     birdAudio = new Audio("./audio/default-sound.m4a");
     birdAudio.load();
+    birdCallButton.classList.add("ready");
+    birdCallButton.removeAttribute("disabled");
+    birdCallButton.querySelector(".label").textContent = "Play Bird Sound 🔊";
   }
 }
 
-export function playPreloadedBirdSound() {
-  console.log(birdAudio)
+birdCallButton.addEventListener("click", () => {
   if (birdAudio) {
-    birdAudio.currentTime = 0.2; //starts it 0.2 seconds in
+    birdAudio.currentTime = 0.2;
     birdAudio.play();
     setTimeout(() => {
       birdAudio.pause();
       birdAudio.currentTime = 0.2;
-    }, 3000);
+    }, 5000);
   }
-}
+});

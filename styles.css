@@ -367,7 +367,7 @@ html, body, #keyboard, .keyboard-row, .key{
 }
 
 /*bird sound*/
-#playBirdSound {
+/* #playBirdSound {
   background-color: #1E2A38;
   border: none;
   border-radius: 20px;
@@ -380,4 +380,44 @@ html, body, #keyboard, .keyboard-row, .key{
 
 #playBirdSound:hover {
   background-color: #2C3E50;
+} */
+#playBirdSound {
+  position: relative;
+  width: 220px;
+  height: 50px;
+  font-size: 18px;
+  color: #666;
+  background-color: #ddd;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: not-allowed;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 20px;
+}
+
+#playBirdSound .label {
+  position: relative;
+  z-index: 2;
+}
+
+#playBirdSound .progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: #4caf50;
+  z-index: 1;
+  transition: width 7s linear;
+}
+
+#playBirdSound.ready {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+#playBirdSound.ready .progress-bar {
+  display: none;
 }
