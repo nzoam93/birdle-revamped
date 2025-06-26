@@ -10,25 +10,6 @@
   justify-self: center;
 }
 
-#app{
-  overscroll-behavior-y: contain; /* prevents pull-to-refresh */
-  overscroll-behavior-x: none;
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-  overscroll-behavior: contain; /* prevent scroll chaining and overscroll */
-  touch-action: pan-y; /* enable vertical pan */
-  display: flex;
-  justify-content: center;
-}
-
-html, body {
-  height: 100%;
-  overflow: hidden; /* disable body scroll */
-  overscroll-behavior: none; /* disable on body/html */
-}
-
 /* dark mode */
 body {
   font-family: "Georgia", "Times New Roman", serif;
@@ -207,7 +188,11 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #4caf50;
-    border: 1px solid red;
+}
+
+html, body {
+  overscroll-behavior-y: contain; /* Prevent vertical pull-to-refresh */
+  height: 100%;
 }
 
 #shareBtn{
