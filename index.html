@@ -39,7 +39,6 @@
                 Birdle
                 <img src="./imgs/titleBird.png" alt="bird-image">
             </h1>
-            <!-- <p class="subtitle"> The bird-themed variation of Wordle</p> -->
             <p class="instruction"> Welcome to the bird-themed variation of Wordle. You can guess any valid English word, but the final answer will always be a bird.</p>
             <p class="instruction">
                 A blurry bird image is located below the keyboard. Each guess sharpens the image until the big reveal! <br />
@@ -55,7 +54,6 @@
             <h1 id="countdownTimer">
                 Next Birdle in: <br><div id="timer"></div>
             </h1>
-            <!-- <p>Come back tomorrow for a new daily Birdle.</p> -->
             <p class="instruction" style="text-align: left;">Can't wait? Continue play in practice mode!</p>
             <p class="instruction" style="text-align: left;">
                 <em>Easy Mode</em> — familiar birds<br />
@@ -75,21 +73,22 @@
             <div id="board"></div>
             <div id="keyboard"></div>
         </div>
-        <div id="post-game-buttons-container">
-            <button id="shareBtn" style="display:none;">
-                Share
-                <img src="./imgs/share-icon.png" alt="Share">
-            </button>
-            <button class="newGameBtn easy practice postGameBtn" style="display: none;">New Game: Easy</button>
-            <button class="newGameBtn hard practice postGameBtn" style="display: none;">New Game: Hard</button>
-        </div>
+
         <img id ="bird" style="display: none;">
         <button id="playBirdSound" disabled>
             <div class="progress-bar"></div>
             <span class="label">Loading Bird Call</span>
         </button>
-        <!-- <button id="playBirdSound" style="display: none;">Play Bird Call 🔊</button> -->
         <div id="randomBirdFact" style="display: none;"></div>
+
+        <div id="postGameOverlay" class="hidden">
+            <button id="shareBtn">
+                Share
+                <img src="./imgs/share-icon.png" alt="Share">
+            </button>
+            <button class="newGameBtn easy practice postGameBtn">New Game: Easy</button>
+            <button class="newGameBtn hard practice postGameBtn">New Game: Hard</button>
+        </div>
     </div>
 </body>
 </html>

@@ -15,7 +15,7 @@ document.addEventListener("keydown", handleKey);
 document.getElementById("shareBtn").addEventListener("click", () => {
     const text = generateShareText(numberOfGuesses);
     navigator.clipboard.writeText(text).then(() => {
-        showAlert("Result copied to clipboard. Paste to share results!", 4000, 22);
+        showAlert("Result copied to clipboard. Paste to share results!", 4000, 16);
     });
 });
 
@@ -30,15 +30,7 @@ newGameButtons.forEach(button => {
   });
 });
 
-// event listener - play bird call
-// const birdCallButton = document.getElementById("playBirdSound");
-// birdCallButton.addEventListener("click", () => {
-//   //bird sounds
-//     playPreloadedBirdSound(secretWord);
-// })
-
 // bird options
-
 export const birdWordsEasy = [
   "Booby", "Crane","Eagle", "Egret", "Finch", "Goose", "Heron", "Quail", "Raven", "Robin", "Stork", "Scaup",
   "Condor", "Falcon", "Magpie", "Osprey", "Parrot", "Pigeon", "Puffin"
@@ -91,10 +83,11 @@ function chooseWord(difficulty, practice=false){
 }
 
 function resetGameState(){
-  // hide the info screen and bird fact unhide the bird
+  // hide the info screen and bird fact, unhide the bird, hide the buttons
   document.getElementById('infoScreen').style.display = "none";
   document.getElementById("randomBirdFact").style.display = "none";
   document.getElementById('bird').style.display = "block";
+  document.getElementById('postGameOverlay').classList.add('hidden');
 
   // ready the alreadyPlayed screen
   document.getElementById("alreadyPlayedMessage").style.display = "none";
@@ -113,20 +106,11 @@ function resetGameState(){
   const keyboardContainer = document.getElementById("keyboard");
   keyboardContainer.innerHTML = "";
 
-  //hide the buttons again
-  document.getElementById("shareBtn").style.display = "none";
-  document.querySelectorAll(".newGameBtn").forEach(button => {
-    button.style.display = "none";
-  });
-
   document.getElementById("playBirdSound").classList.add("visible");
 
   //remove board blur
   document.getElementById("board-container").classList.remove("blur");
-
-
 }
-
 
 
 function loadDictionaryAndInitializeBoard(wordFilePath) {

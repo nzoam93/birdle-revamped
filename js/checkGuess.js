@@ -6,10 +6,7 @@ import { fetchBirdFact } from "./birdFetch.js";
 function endGameActions(){
     setGameOver(true);
     document.getElementById("board-container").classList.add("blur");
-    document.getElementById("shareBtn").style.display = "block";
-    document.querySelectorAll(".newGameBtn").forEach(button => {
-        button.style.display = "block";
-    });
+    document.getElementById('postGameOverlay').classList.remove('hidden');
     document.getElementById("randomBirdFact").style.display = "block";
     fetchBirdFact(secretWord).then(birdFact => {
         document.getElementById("randomBirdFact").innerHTML = `Did you know? ${birdFact}`;
@@ -31,7 +28,6 @@ export function checkGuess(){
     for (let char of secretWord) { //used to keep track of words with multiple of the same letter
         letterCount[char] = (letterCount[char] || 0) + 1;
     }
-
 
     // First pass: determine the green letters
     for (let i = 0; i < wordLength; i++) {
@@ -113,7 +109,6 @@ export function checkGuess(){
         let blurLevel = "blur(0px)";
         document.getElementById("bird").style.filter = blurLevel;
     }
-
 
     //reset the guess array
     setCurrentGuess([]);
