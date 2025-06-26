@@ -69,35 +69,49 @@ export async function fetchBirdFact(birdName){
 
 let birdAudio = null;
 const birdCallButton = document.getElementById("playBirdSound");
+const label = birdCallButton.querySelector(".label");
 const progressBar = birdCallButton.querySelector(".progress-bar");
 
 export async function preloadBirdSound(birdName) {
-  try {
-    // Start animation immediately
-    progressBar.style.width = "100%";
+  // Reset button
+  birdCallButton.classList.remove("ready");
+  label.textContent = "Loading Bird Call...";
+  birdCallButton.setAttribute("disabled", true);
+  progressBar.style.width = "0%";
+  progressBar.style.display = "block";
 
+  // Trigger animation
+  setTimeout(() => {
+    progressBar.style.transition = "width 7s linear";
+    progressBar.style.width = "100%";
+  }, 50); // slight delay to ensure transition applies
+
+  birdCallButton.classList.add("visible");
+
+  try {
     const res = await fetch(`https://node-proxy-for-birdle.onrender.com/bird-sound?bird=${birdName}`);
     const data = await res.json();
-
-    if (!data || !data.url) throw new Error('Invalid audio response');
+    if (!data || !data.url) throw new Error("No audio found");
 
     birdAudio = new Audio(data.url);
-
-    // Wait until the sound is ready to play
-    birdAudio.addEventListener("canplaythrough", () => {
-      birdCallButton.classList.add("ready");
-      birdCallButton.removeAttribute("disabled");
-      birdCallButton.querySelector(".label").textContent = "Play Bird Call 📢";
-    });
-
     birdAudio.load();
+
+    // Wait 7 seconds (animation time), then enable
+    setTimeout(() => {
+      birdCallButton.classList.add("ready");
+      label.textContent = "Play Bird Call 📢";
+      birdCallButton.removeAttribute("disabled");
+      progressBar.style.display = "none";
+    }, 7000);
+
   } catch (err) {
-    console.warn(`Preloading failed:`, err.message);
+    console.warn("Bird sound failed:", err);
     birdAudio = new Audio("./audio/default-sound.m4a");
     birdAudio.load();
+    label.textContent = "Play Bird Sound 🔊";
     birdCallButton.classList.add("ready");
     birdCallButton.removeAttribute("disabled");
-    birdCallButton.querySelector(".label").textContent = "Play Bird Sound 🔊";
+    progressBar.style.display = "none";
   }
 }
 
