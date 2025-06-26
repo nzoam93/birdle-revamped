@@ -88,6 +88,7 @@ function resetGameState(){
   document.getElementById("randomBirdFact").style.display = "none";
   // document.getElementById('bird').style.display = "block";
   document.getElementById('postGameOverlay').classList.add('hidden');
+  document.getElementById("toggleBirdBtn").style.display="block";
 
   // ready the alreadyPlayed screen
   document.getElementById("alreadyPlayedMessage").style.display = "none";
