@@ -74,12 +74,24 @@
             <div id="keyboard"></div>
         </div>
 
-        <img id ="bird" style="display: none;">
-        <button id="playBirdSound" disabled>
-            <div class="progress-bar"></div>
-            <span class="label">Loading Bird Call</span>
-        </button>
-        <div id="randomBirdFact" style="display: none;"></div>
+
+
+        <div id="birdOverlay" class="hidden">
+            <div class="bird-overlay-content">
+                <img id="birdOverlayImage" alt="Bird">
+                <p id="birdBlurryInfo">The bird image will become progressively <br> less blurry with each guess</p>
+            </div>
+        </div>
+
+        <div id="gameBtns">
+            <button id="toggleBirdBtn">View Bird 📷</button>
+
+            <button id="playBirdSound" disabled>
+                <div class="progress-bar"></div>
+                <span class="label">Loading Bird Call</span>
+            </button>
+            <div id="randomBirdFact" style="display: none;"></div>
+        </div>
 
         <div id="postGameOverlay" class="hidden">
             <button id="shareBtn">

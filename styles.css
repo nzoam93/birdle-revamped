@@ -374,13 +374,13 @@ html, body, #keyboard, .keyboard-row, .key{
 
 #playBirdSound {
   position: relative;
-  width: 220px;
-  height: 50px;
-  font-size: 18px;
+  width: 180px;
+  height: 45px;
+  font-size: 16px;
   color: #666;
   background-color: #ddd;
   border: none;
-  border-radius: 20px;
+  border-radius: 50px;
   overflow: hidden;
   cursor: not-allowed;
   transition: background-color 0.3s, color 0.3s;
@@ -389,6 +389,10 @@ html, body, #keyboard, .keyboard-row, .key{
   opacity: 0;
   visibility: hidden;
   /* added the opacity and visibility so it could remain in the DOM and have the transition effects */
+}
+
+#toggleBirdBtn:hover, #playBirdSound:hover{
+  background-color: #538d4e;
 }
 
 #playBirdSound.visible {
@@ -420,4 +424,55 @@ html, body, #keyboard, .keyboard-row, .key{
 
 #playBirdSound.ready .progress-bar {
   display: none;
+}
+
+
+/* bird image toggle  */
+#birdOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 26, 36, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+#birdOverlay.hidden {
+  display: none;
+}
+
+.bird-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#birdOverlayImage {
+  width: 375px;
+  height: 375px;
+  border-radius: 12px;
+}
+
+#birdBlurryInfo{
+  width: 375px;
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* Bird Image  */
+#toggleBirdBtn{
+  margin-right: 10px;
+  position: relative;
+  width: 180px;
+  height: 45px;
+  color: white;
+  background-color: #4caf50;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
 }

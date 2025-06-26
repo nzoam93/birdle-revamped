@@ -86,7 +86,7 @@ function resetGameState(){
   // hide the info screen and bird fact, unhide the bird, hide the buttons
   document.getElementById('infoScreen').style.display = "none";
   document.getElementById("randomBirdFact").style.display = "none";
-  document.getElementById('bird').style.display = "block";
+  // document.getElementById('bird').style.display = "block";
   document.getElementById('postGameOverlay').classList.add('hidden');
 
   // ready the alreadyPlayed screen
@@ -168,10 +168,29 @@ function newGame(difficulty, practice){
   loadDictionaryAndInitializeBoard(wordFilePath);
 
   //birdle blur
-  document.getElementById("bird").style.filter = "blur(20px)";
+  document.getElementById("birdOverlayImage").style.filter = "blur(20px)";
   fetchBirdImage(secretWord).then(url => {
       if (url) {
-        document.getElementById("bird").src = url;
+        document.getElementById("birdOverlayImage").src = url;
       }
   });
 }
+
+
+const toggleBtn = document.getElementById("toggleBirdBtn");
+const overlay = document.getElementById("birdOverlay");
+
+// Show overlay
+toggleBtn.addEventListener("click", () => {
+  overlay.classList.remove("hidden");
+});
+
+// Hide when clicking outside the content
+overlay.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+});
+
+// Prevent closing if clicking inside content
+document.querySelector(".bird-overlay-content").addEventListener("click", (e) => {
+  e.stopPropagation();
+});

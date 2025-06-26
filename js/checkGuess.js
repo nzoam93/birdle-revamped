@@ -103,11 +103,11 @@ export function checkGuess(){
     if (!gameOver){
         let blurFactor = 20 - numberOfGuesses * 4;
         let blurLevel = "blur("+blurFactor+"px)";
-        document.getElementById("bird").style.filter = blurLevel;
+        document.getElementById("birdOverlayImage").style.filter = blurLevel;
     }
     else {
         let blurLevel = "blur(0px)";
-        document.getElementById("bird").style.filter = blurLevel;
+        document.getElementById("birdOverlayImage").style.filter = blurLevel;
     }
 
     //reset the guess array
