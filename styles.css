@@ -65,6 +65,13 @@ body {
 
 /* Buttons */
 
+#bottom-display{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
 #gameBtns{
   display: flex;
   justify-content: center;
